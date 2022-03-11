@@ -1,0 +1,20 @@
+{
+  "name": "paedsinduction",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sass/mystyles.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css-build": "node-sass --omit-source-map-url sass/mystyles.scss public/css/mystyles.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  },
+  "author": "shona chan",
+  "license": "ISC",
+  "dependencies": {
+    "bulma": "^0.9.3",
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "node-sass": "^7.0.1"
+  }
+}
