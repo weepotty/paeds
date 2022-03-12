@@ -1,6 +1,4 @@
-const title = document.getElementById("title");
 
-title.innerHTML ='does this still work'
 
 
 const arrButtons = document.getElementsByClassName('arr-button')

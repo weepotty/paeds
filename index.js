@@ -1,4 +1,5 @@
 const express = require("express");
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -18,6 +19,12 @@ app.get("/fluids", (req, res) => {
   res.render("fluids");
 });
 
+
+
+app.get("/pain", (req, res) => {
+  res.render("pain");
+});
+
 app.get("/emergencies", (req, res) => {
   res.render("emergencies");
 });
@@ -29,6 +36,6 @@ app.get("/airway", (req, res) => {
 app.get("/perioperative", (req, res) => {
   res.render("perioperative");
 });
-app.listen(3000, function () {
-  console.log("server started on port 3000");
-});
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+

@@ -1,5 +1,14 @@
 <%- include ("partials/header") -%>
-<%- include ("partials/tabs-protocols") -%> 
+
+<!-- navigation bar -->
+<div class="container mt-5">
+  <div class="tabs is-boxed my-0">
+    <ul>
+      <li class="is-active"><a href="/emergencies">Emergencies</a></li>
+      <li id="airway"><a href="/perioperative">Perioperative</a></li>
+      <li><a href="/pain">Pain</a></li>
+    </ul>
+  </div> 
 
 
   <!-- start of main content -->
@@ -12,7 +21,7 @@
 
 
           <div class="buttons">
-            <button class="button is-primary arr-button">Cardiac arrhythmias</button>
+            <button class="button is-primary arr-button">Cardiac Arrhythmias</button>
             </div>
           <div class="modal" id="arr-modal">
             <div class="modal-background "></div>
