@@ -12,6 +12,7 @@
   "author": "shona chan",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.2",
     "bulma": "^0.9.3",
     "ejs": "^3.1.6",
     "express": "^4.17.3",

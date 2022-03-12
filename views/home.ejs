@@ -19,22 +19,62 @@
         <div class="columns">
           <div class="column">
             <!-- column 1 -->
-            <div class="box">
 
-            
-              <p>Midazolam 0.3mg/kg buccal max 10mg</p>
-              <p>Midazolam 0.5mg/kg oral max 20mg</p>
-              <p>Dexmedetomidine</p>
-            </div>
             <div class="box">
-              <p>Propofol 3-4mg/kg</p>
+              <form action="" method="post">
+
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label for="weight" class=has-text-weight-bold>Weight</label>
+        
+                  </div>
+                  <div class="field-body">
+                    <div class="field columns is-vcentered">
+                        <div class="column is-one-fifth px-0"><input id=weight name="weight" class="input is-success" type="number" min="0"></div>
+                        <div class="column">kg</div>
+                    </div> 
+                  </div>
+                </div>
+
+                <div class="field is-horizontal">
+                  <div class="field-label is-normal">
+                    <label for="age" class="has-text-weight-bold">Age</label>
+                  </div>
+                  <div class="field-body">
+                    <div class="field columns is-vcentered">
+                        <div class="column is-one-fifth px-0"><input id=age name="age" class="input is-success" type="number" min="0"></div>
+                        <div class="column">years </div><button type="submit" class="button is-primary mr-5">Submit</button>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="container has-text-right">
+                
+              </div>
+               </form>
+            </div>
+
+
+           
+
+    
+
+            <div class="box columns mx-0">
+              <div class="column is-half">
+                <p>Midazolam (buccal) 0.3/10mg</p>
+                <p>Midazolam (oral) 0.5/20mg</p>
+                <p>Dexmedetomidine</p></div>
+              <div class="column" id="test">amount</div>
+              <div class="column">volume</div>
+              <!-- <p>Propofol 3-4mg/kg</p>
               <p>Ketamine 2mg/kg IV; 10mg/kg IM</p>
               <p>Rocuronium 0.6mg/kg</p>
               <p>Rocuronium RSI 1mg/kg</p>
               <p>Neostigmine 50mcg/kg</p>
-              
+               -->
             </div>
             <div class="box">
+          
               <p>Suxamethonium</p>
               <p>Atropine</p>
             </div>

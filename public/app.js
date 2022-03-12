@@ -23,14 +23,26 @@ for (let buttons of laToxButtons) {
   laToxModal.classList.toggle('is-active')
 })}
 
+// if (weight !== 'undefined'){
+//   document.getElementById('test').innerHTML = weight
+// }
+
+// function getWeight() {
+//   let weight = Number(document.getElementById("weight").value);
+//   return weight;}
+
+  
+//   for (let drug in doses) {
+//         if (doses.hasOwnProperty(drug)) {
+//           doses[drug] *= weight;
+//         }
+//       }
 
 
-// modalButtons.forEach((modalButton) => {
-//   modalButton.addEventListener('click', () => {
-//     modals.forEach(item => item.classList.remove('is-active'))
-//     item.classList.add('is-active')
-// });
-// })
+
+
+
+
 
 
 
