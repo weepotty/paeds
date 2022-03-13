@@ -23,15 +23,29 @@ for (let buttons of laToxButtons) {
   laToxModal.classList.toggle('is-active')
 })}
 
-// if (weight !== 'undefined'){
-//   document.getElementById('test').innerHTML = weight
-// }
+
+
+
+// const doses = {
+//   midazbuccal: 0.3,
+//   midazoral: 0.5,
+//   dexmed: 3
+//   }
 
 // function getWeight() {
-//   let weight = Number(document.getElementById("weight").value);
-//   return weight;}
+//   return (document.getElementById("weight").value)
+//   }
 
+//   let getWeight = () => document.getElementById("weight").value
+
+// // function amount(w,d){
+// //   return w*d
+// // }
+
+// // let midazbDose = amount(weight,doses.midazbuccal)
   
+// document.getElementById('test').innerHTML = getWeight()
+
 //   for (let drug in doses) {
 //         if (doses.hasOwnProperty(drug)) {
 //           doses[drug] *= weight;

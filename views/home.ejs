@@ -20,30 +20,31 @@
           <div class="column">
             <!-- column 1 -->
 
-            <div class="box">
-              <form action="/" method="post">
+            <div class="box pt-4">
+              <form action="/" method="POST">
 
                 <div class="field is-horizontal">
-                  <div class="field-label is-normal">
+                  <div class="field-label is-small">
                     <label for="weight" class=has-text-weight-bold>Weight</label>
         
                   </div>
                   <div class="field-body">
                     <div class="field columns is-vcentered">
-                        <div class="column is-one-fifth px-0"><input id=weight name="weight" class="input is-success" type="number" min="0"></div>
+                        <div class="column is-one-fifth px-0"><input id="weight" name="weight" class="input is-success is-small" type="number" min="0" max="100"></div>
                         <div class="column">kg</div>
                     </div> 
                   </div>
                 </div>
 
                 <div class="field is-horizontal">
-                  <div class="field-label is-normal">
+                  <div class="field-label is-small">
                     <label for="age" class="has-text-weight-bold">Age</label>
                   </div>
                   <div class="field-body">
                     <div class="field columns is-vcentered">
-                        <div class="column is-one-fifth px-0"><input id=age name="age" class="input is-success" type="number" min="0"></div>
-                        <div class="column">years </div><button type="submit" class="button is-primary mr-5">Submit</button>
+                        <div class="column is-one-fifth px-0"><input id="age" name="age" class="input is-success is-small" type="number" min="0" max="16"></div>
+                        <div class="column">years <button class="button is-primary is-small ml-5" type="submit">Submit</button></div>
+                        
                     </div>
                     
                   </div>
@@ -60,35 +61,140 @@
     
 
             <div class="box columns mx-0">
-              <div class="column is-half">
-                <p>Midazolam (buccal) 0.3/10mg</p>
-                <p>Midazolam (oral) 0.5/20mg</p>
-                <p>Dexmedetomidine</p></div>
-              <div class="column" id="test">amount</div>
-              <div class="column">volume</div>
-              <!-- <p>Propofol 3-4mg/kg</p>
-              <p>Ketamine 2mg/kg IV; 10mg/kg IM</p>
-              <p>Rocuronium 0.6mg/kg</p>
-              <p>Rocuronium RSI 1mg/kg</p>
-              <p>Neostigmine 50mcg/kg</p>
-               -->
-            </div>
-            <div class="box">
-          
-              <p>Suxamethonium</p>
-              <p>Atropine</p>
-            </div>
+              <div class="column">
+              
+              <!-- premeds -->
+<div class="box">
+  
+  <table class="table is-size-7 is-fullwidth">
+    <tr>
+       <th>Drug</th>
+       <th>Amount</th>
+       
+    </tr>
+ 
+    <% for (let premed of premeds) { %>
+     <tr>
+       <td><%= premed.name %></td>
+       <td>
 
-            <div class="box">
-              <p>Cefuroxime 50mg/kg</p>
-              <p>Co-amoxiclav 30mg/kg</p>
-              <p>Metronidazole 7.5mg/kg</p>
-              <p>Gentamicin 3-7mg/kg</p>
-            </div>
+         <% if  (premed.amount > premed.max) { %>
+          <%= premed.max %><%= premed.units %>
+        <% } else { %>
+            <%= premed.amount %><%= premed.units %>
+         <%  } %>
+           
+        
+        </td>
+  
+     </tr>    
+    <% } %>
+ </table>
 
-            <p></p>
-            <p></p>
-            <p></p>
+
+</div>
+
+<!-- emergency drugs -->
+<div class="box">
+  
+  <table class="table is-size-7 is-fullwidth">
+    <tr>
+       <th>Drug</th>
+       <th>Amount</th>
+       <th>Volume (mls)</th>
+    </tr>
+ 
+    <% for (let e of emergencyDrugs) { %>
+     <tr>
+       <td><%= e.name %></td>
+       <td> <% if  (e.amount > e.max) { %>
+        <%= e.max %><%= e.units %>
+      <% } else { %>
+          <%= e.amount %><%= e.units %>
+       <%  } %></td>
+      
+       <td>
+         
+        <% if  (e.amount > e.max) { %>
+        <%= e.maxvolume %>
+      <% } else { %>
+          <%= e.volume %>
+       <%  } %>
+      
+      </td>
+     </tr>    
+    <% } %>
+ </table>
+
+
+</div>
+<!-- induction drugs-->
+
+<div class="box">
+  
+  <table class="table is-size-7 is-fullwidth">
+    <tr>
+       <th>Drug</th>
+       <th>Amount</th>
+       
+       <th>Volume (mls)</th>
+    </tr>
+ 
+    <% for (let i of inductionDrugs) { %>
+     <tr>
+      <td><%= i.name %></td>
+      <td> <% if  (i.amount > i.max) { %>
+       <%= i.max %><%= i.units %>
+     <% } else { %>
+         <%= i.amount %><%= i.units %>
+      <%  } %></td>
+       
+      <td>
+    
+        <% if  (i.amount > i.max) { %>
+        <%= i.maxvolume %>
+      <% } else { %>
+          <%= i.volume %>
+       <%  } %>
+      
+      </td>
+       
+     </tr>    
+    <% } %>
+ </table>
+
+
+</div>
+            
+            
+<!-- antibiotics -->
+
+<div class="box">
+  
+  <table class="table is-size-7">
+    <tr>
+       <th>Drug</th>
+       <th>Amount</th>
+       
+       
+    </tr>
+ 
+    <% for (let abx of antibiotics) { %>
+     <tr>
+      <td><%= abx.name %></td>
+      <td> <% if  (abx.amount > abx.max) { %>
+       <%= abx.max %><%= abx.units %>
+     <% } else { %>
+         <%= abx.amount %><%= abx.units %>
+      <%  } %></td>
+       
+     </tr>    
+    <% } %>
+ </table>
+
+
+</div>
+            
           </div>
           <div class="column">
             <!-- column 2 -->
