@@ -66,6 +66,23 @@ app.post("/", function(req, res){
     });
   });
 
+  app.get("/pdfs/ALSfull.pdf", function(req, res){
+    var tempFile="pdfs/ALSfull.pdf";
+    fs.readFile(tempFile, function (err,data){
+       res.contentType("application/pdf");
+       res.send(data);
+    });
+  });
+
+  app.get("/pdfs/LA-tox.pdf", function(req, res){
+    var tempFile="pdfs/LA-tox.pdf";
+    fs.readFile(tempFile, function (err,data){
+       res.contentType("application/pdf");
+       res.send(data);
+    });
+  });
+
+
 
   antibiotics.forEach(abx => {
     abx['amount'] = abx['dose'] * weightNum
