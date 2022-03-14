@@ -38,12 +38,25 @@ const antibiotics = [
 
 ]
 
+const antiemetics = [
+  {name: "Ondansetron", dose: 0.15, units: "mg", max: 8, concentration: 2},
+  {name: "Dexamethasone", dose: 0.15, units: "mg", max: 10, concentration: 4},
+
+  ]
+
+
+const painkillers = [
+  {name: "Paracetamol IV", dose: 15, units: "mg", max: 1000, concentration: 10, freq: "4-6 hrly, max QDS"},
+  {name: "Ibuprofen PO", dose: 10, units: "mg", freq: "6 hrly, max TDS", max: 400},
+  {name: "Diclofenac PO/PR", dose: 1, units: "mg", freq: "8 hrly", max: 50},
+
+  ]
+
 const titles = {
   cheatsheet: "Cheatsheet",
   protocols: "Protocols",
   induction: "Induction"
 }
-
 
 
 app.set("view engine", "ejs");
@@ -53,8 +66,146 @@ app.use(express.static("public"));
 
 
 
+
+// pdf links
+app.get("/pdfs/cardiac-arr.pdf", function(req, res){
+  var tempFile="pdfs/cardiac-arr.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/ALSfull.pdf", function(req, res){
+  var tempFile="pdfs/ALSfull.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/LA-tox.pdf", function(req, res){
+  var tempFile="pdfs/LA-tox.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/premed-dex.pdf", function(req, res){
+  var tempFile="pdfs/premed-dex.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/appendicectomy.pdf", function(req, res){
+  var tempFile="appendicectomy.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/cortisol.pdf", function(req, res){
+  var tempFile="cortisol.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+app.get("/pdfs/diabetes.pdf", function(req, res){
+  var tempFile="diabetes.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/potassium.pdf", function(req, res){
+  var tempFile="potassium.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+app.get("/pdfs/VTE.pdf", function(req, res){
+  var tempFile="VTE.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/trainee-starter-pack.pdf", function(req, res){
+  var tempFile="trainee-starter-pack.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/morphine.pdf", function(req, res){
+  var tempFile="morphine.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/PCA-NCA.pdf", function(req, res){
+  var tempFile="PCA-NCA.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/fractures.pdf", function(req, res){
+  var tempFile="fractures.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/LA-infusion.pdf", function(req, res){
+  var tempFile="LA-infusion.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/epidural.pdf", function(req, res){
+  var tempFile="epidural.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/ppt-feb-22.pdf", function(req, res){
+  var tempFile="ppt-feb-22.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+app.get("/pdfs/ppt-nov-21.pdf", function(req, res){
+  var tempFile="ppt-nov-21.pdf";
+  fs.readFile(tempFile, function (err,data){
+     res.contentType("application/pdf");
+     res.send(data);
+  });
+});
+
+
+
 app.get("/", function (req, res) {
-  res.render("home", {child, antibiotics, premeds, inductionDrugs, emergencyDrugs, title: titles.cheatsheet})
+  res.render("home", {child, antibiotics, premeds, inductionDrugs, emergencyDrugs, antiemetics, painkillers, title: titles.cheatsheet})
 })
 
 
@@ -65,106 +216,111 @@ app.post("/", function(req, res){
   child.push({weight,age});
   let weightNum=parseFloat(weight);
 
-
-
-
-// pdf links
-  app.get("/pdfs/cardiac-arr.pdf", function(req, res){
-    var tempFile="pdfs/cardiac-arr.pdf";
-    fs.readFile(tempFile, function (err,data){
-       res.contentType("application/pdf");
-       res.send(data);
-    });
-  });
-
-  app.get("/pdfs/ALSfull.pdf", function(req, res){
-    var tempFile="pdfs/ALSfull.pdf";
-    fs.readFile(tempFile, function (err,data){
-       res.contentType("application/pdf");
-       res.send(data);
-    });
-  });
-
-  app.get("/pdfs/LA-tox.pdf", function(req, res){
-    var tempFile="pdfs/LA-tox.pdf";
-    fs.readFile(tempFile, function (err,data){
-       res.contentType("application/pdf");
-       res.send(data);
-    });
-  });
-
-  app.get("/pdfs/premed-dex.pdf", function(req, res){
-    var tempFile="pdfs/premed-dex.pdf";
-    fs.readFile(tempFile, function (err,data){
-       res.contentType("application/pdf");
-       res.send(data);
-    });
-  });
-
-  app.get("/pdfs/appendicectomy.pdf", function(req, res){
-    var tempFile="appendicectomy.pdf";
-    fs.readFile(tempFile, function (err,data){
-       res.contentType("application/pdf");
-       res.send(data);
-    });
-  });
-
-  app.get("/pdfs/cortisol.pdf", function(req, res){
-    var tempFile="cortisol.pdf";
-    fs.readFile(tempFile, function (err,data){
-       res.contentType("application/pdf");
-       res.send(data);
-    });
-  });
-  app.get("/pdfs/diabetes.pdf", function(req, res){
-    var tempFile="diabetes.pdf";
-    fs.readFile(tempFile, function (err,data){
-       res.contentType("application/pdf");
-       res.send(data);
-    });
-  });
-
-  app.get("/pdfs/potassium.pdf", function(req, res){
-    var tempFile="potassium.pdf";
-    fs.readFile(tempFile, function (err,data){
-       res.contentType("application/pdf");
-       res.send(data);
-    });
-  });
-  app.get("/pdfs/VTE.pdf", function(req, res){
-    var tempFile="VTE.pdf";
-    fs.readFile(tempFile, function (err,data){
-       res.contentType("application/pdf");
-       res.send(data);
-    });
-  });
-
-
 //drug calculator code
 
   antibiotics.forEach(abx => {
     abx['amount'] = abx['dose'] * weightNum
+    if (abx['amount'] > abx['max']) {
+      abx['amount'] = abx['max']
+    } else {
+      abx['amount'] = abx['dose'] * weightNum
+    }
   });
   
   premeds.forEach(premed => {
     premed['amount'] = premed['dose'] * weightNum
+    if (premed['amount'] > premed['max']) {
+      premed['amount'] = premed['max']
+    } else {
+      premed['amount'] = premed['dose'] * weightNum
+    }
   });
 
   emergencyDrugs.forEach(edrug => {
     edrug['amount'] = edrug['dose'] * weightNum;
     edrug['volume'] = (edrug['amount'] / edrug['concentration']).toFixed(2);
     edrug['maxvolume'] = Math.floor(edrug['max']/edrug['concentration']);
+
+    if (edrug['amount'] > edrug['max']) {
+      edrug['amount'] = edrug['max']
+      edrug['volume'] = edrug['maxvolume']
+    } 
+    
+    else  {
+      edrug['amount'] = edrug['dose'] * weightNum
+      edrug['volume'] = (edrug['amount'] / edrug['concentration']).toFixed(2)
+    }
   });
 
   inductionDrugs.forEach(idrug => {
     idrug['amount'] = idrug['dose'] * weightNum;
     idrug['volume'] = (idrug['amount'] / idrug['concentration']).toFixed(2);
     idrug['maxvolume'] = Math.floor(idrug['max']/idrug['concentration']);
-})
+
+    if (isNaN(idrug['volume'])) {
+      idrug['volume'] = idrug['amount']
+    }
+
+   else if (idrug['amount'] > idrug['max']) {
+      idrug['amount'] = idrug['max']
+      idrug['volume'] = idrug['maxvolume']
+    } else {
+      idrug['amount'] = idrug['dose'] * weightNum
+      idrug['volume'] = (idrug['amount'] / idrug['concentration']).toFixed(2);
+    }
+});
+
+antiemetics.forEach(antiemetic => {
+  antiemetic['amount'] = antiemetic['dose'] * weightNum;
+  antiemetic['volume'] = (antiemetic['amount'] / antiemetic['concentration']).toFixed(2);
+  antiemetic['maxvolume'] = Math.floor(antiemetic['max']/antiemetic['concentration']);
+
+
+  if (antiemetic['amount'] > antiemetic['max']) {
+    antiemetic['amount'] = antiemetic['max']
+    antiemetic['volume'] = antiemetic['maxvolume']
+  } else {
+    antiemetic['amount'] = antiemetic['dose'] * weightNum
+    antiemetic['volume'] = (antiemetic['amount'] / antiemetic['concentration']).toFixed(2);
+  }
+});
+
+painkillers.forEach(painkiller => {
+  painkiller['amount'] = painkiller['dose'] * weightNum;
+  painkiller['volume'] = (painkiller['amount'] / painkiller['concentration']).toFixed(2);
+  painkiller['maxvolume'] = Math.floor(painkiller['max']/painkiller['concentration']);
+ 
+
+if (weightNum < 10) {
+  painkiller['amount'] = (painkiller['dose'] * weightNum)/2;
+}
+
+else if (painkiller['amount'] > painkiller['max']) {
+  painkiller['amount'] = painkiller['max']
+  painkiller['volume'] = painkiller['maxvolume']
+
+} else if (weightNum > 50) {
+  painkiller['amount'] = painkiller['max'] 
+  painkiller['volume']=painkiller['maxvolume']
+}
+
+   else {
+    painkiller['amount'] = painkiller['dose'] * weightNum
+    painkiller['volume'] = (painkiller['amount'] / painkiller['concentration']).toFixed(2);
+  }
+
+  if (isNaN(painkiller['volume'])) {
+    painkiller['volume'] = " "
+  }
+  else {
+    painkiller['volume'] = (painkiller['amount'] / painkiller['concentration']).toFixed(2);
+
+  }
+});
+
+
  res.redirect("/");
   });
-
-
 
  
 app.get("/wetflags", (req, res) => {
@@ -192,5 +348,12 @@ app.get("/perioperative", (req, res) => {
   res.render("perioperative", {title: titles.protocols});
 });
 
+app.get("/starterpack", (req, res) => {
+  res.render("starterpack", {title: titles.induction});
+});
+
+app.get("/powerpoints", (req, res) => {
+  res.render("powerpoints", {title: titles.induction});
+});
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

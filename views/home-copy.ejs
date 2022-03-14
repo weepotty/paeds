@@ -28,12 +28,12 @@
               <form action="/" method="POST">
 
                 <div class="field is-horizontal is-mobile">
-                  <div class="field-label">
-                    <label for="weight"   >Weight</label>
+                  <div class="field-label is-small">
+                    <label for="weight" class=has-text-weight-bold>Weight</label>
                   </div>
                   <div class="field-body">
                     <div class="field columns is-mobile is-vcentered">
-                        <div class="column is-one-fifth pl-3"><input id="weight" name="weight" class="input is-success is-small" type="number" min="0" max="100"></div>
+                        <div class="column is-one-fifth pl-5"><input id="weight" name="weight" class="input is-success is-small" type="number" min="0" max="100"></div>
                         <div class="column">kg</div>
                     </div> 
                   </div>
@@ -42,12 +42,12 @@
             
 
                 <div class="field is-horizontal is-mobile">
-                  <div class="field-label">
+                  <div class="field-label is-small">
                     <label for="age" class="has-text-weight-bold">Age</label>
                   </div>
                   <div class="field-body">
                     <div class="field columns is-mobile is-vcentered">
-                        <div class="column is-one-fifth pl-3"><input id="age" name="age" class="input is-success is-small" type="number" min="0" max="16"></div>
+                        <div class="column is-one-fifth pl-5"><input id="age" name="age" class="input is-success is-small" type="number" min="0" max="16"></div>
                         <div class="column">years <button class="button is-primary is-small ml-5" type="submit">Submit</button></div>
                         
                     </div>
@@ -128,6 +128,7 @@
       <tr>
        <td><%= i.name %></td>
         <td> <%= i.amount %> <%= i.units %></td>
+       
         <td> <%= i.volume %> </td>
       </tr>    
      <% } %>
@@ -179,33 +180,6 @@
         <td> <%= a.volume %> </td>
       </tr>    
      <% } %>
-      
-     
- </table>
-
-
-</div>
-
-
-<!-- analgesia -->
-<div class="box">
-  
-  <table class="table is-size-7 is-fullwidth">
-    <tr>
-       <th>Drug</th>
-       <th>Amount</th>
-       <th>Volume (mls)</th>
-       <th>Frequency</th>
-    </tr>
- 
-    <% for (let p of painkillers) { %>
-      <tr>
-       <td><%= p.name %></td>
-        <td> <%= p.amount %> <%= p.units %></td>
-        <td> <%= p.volume %> </td>
-        <td> <%= p.freq %> </td>
-      </tr>    
-  <% } %>
       
      
  </table>
