@@ -82,6 +82,53 @@ app.post("/", function(req, res){
     });
   });
 
+  app.get("/pdfs/premed-dex.pdf", function(req, res){
+    var tempFile="pdfs/premed-dex.pdf";
+    fs.readFile(tempFile, function (err,data){
+       res.contentType("application/pdf");
+       res.send(data);
+    });
+  });
+
+  app.get("/pdfs/appendicectomy.pdf", function(req, res){
+    var tempFile="appendicectomy.pdf";
+    fs.readFile(tempFile, function (err,data){
+       res.contentType("application/pdf");
+       res.send(data);
+    });
+  });
+
+  app.get("/pdfs/cortisol.pdf", function(req, res){
+    var tempFile="cortisol.pdf";
+    fs.readFile(tempFile, function (err,data){
+       res.contentType("application/pdf");
+       res.send(data);
+    });
+  });
+  app.get("/pdfs/diabetes.pdf", function(req, res){
+    var tempFile="diabetes.pdf";
+    fs.readFile(tempFile, function (err,data){
+       res.contentType("application/pdf");
+       res.send(data);
+    });
+  });
+
+  app.get("/pdfs/potassium.pdf", function(req, res){
+    var tempFile="potassium.pdf";
+    fs.readFile(tempFile, function (err,data){
+       res.contentType("application/pdf");
+       res.send(data);
+    });
+  });
+  app.get("/pdfs/VTE.pdf", function(req, res){
+    var tempFile="VTE.pdf";
+    fs.readFile(tempFile, function (err,data){
+       res.contentType("application/pdf");
+       res.send(data);
+    });
+  });
+
+
 
 
   antibiotics.forEach(abx => {

@@ -7,6 +7,8 @@ const alsButtons = document.getElementsByClassName('als-button')
 const alsModal = document.getElementById('als-modal')
 const laToxButtons = document.getElementsByClassName('la-tox-button')
 const laToxModal = document.getElementById('la-tox-modal')
+const dexButtons = document.getElementsByClassName('dex-button')
+const dexModal = document.getElementById('dex-modal')
 
 for (let ab of arrButtons) {
   ab.addEventListener('click', () => {
@@ -22,6 +24,12 @@ for (let buttons of laToxButtons) {
   buttons.addEventListener('click', () => {
   laToxModal.classList.toggle('is-active')
 })}
+
+for (let buttons of dexButtons) {
+  buttons.addEventListener('click', () => {
+    dexModal.classList.toggle('is-active')
+})}
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
