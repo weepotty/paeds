@@ -38,6 +38,14 @@ const antibiotics = [
 
 ]
 
+const titles = {
+  cheatsheet: "Cheatsheet",
+  protocols: "Protocols",
+  induction: "Induction"
+}
+
+
+
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -46,7 +54,7 @@ app.use(express.static("public"));
 
 
 app.get("/", function (req, res) {
-  res.render("home", {child, antibiotics, premeds, inductionDrugs, emergencyDrugs})
+  res.render("home", {child, antibiotics, premeds, inductionDrugs, emergencyDrugs, title: titles.cheatsheet})
 })
 
 
@@ -56,6 +64,9 @@ app.post("/", function(req, res){
   // age = req.body.age
   child.push({weight,age});
   let weightNum=parseFloat(weight);
+
+
+
 
 // pdf links
   app.get("/pdfs/cardiac-arr.pdf", function(req, res){
@@ -129,7 +140,7 @@ app.post("/", function(req, res){
   });
 
 
-
+//drug calculator code
 
   antibiotics.forEach(abx => {
     abx['amount'] = abx['dose'] * weightNum
@@ -155,31 +166,31 @@ app.post("/", function(req, res){
 
 
 
+ 
 app.get("/wetflags", (req, res) => {
-  res.render("wetflags");
+  res.render("wetflags", {title: titles.cheatsheet});
 });
 
 app.get("/fluids", (req, res) => {
-  res.render("fluids");
+  res.render("fluids", {title: titles.cheatsheet});
 });
 
 
 app.get("/pain", (req, res) => {
-  res.render("pain");
+  res.render("pain", {title: titles.protocols});
 });
 
 app.get("/emergencies", (req, res) => {
-  res.render("emergencies");
+  res.render("emergencies", {title: titles.protocols});
 });
 
 app.get("/airway", (req, res) => {
-  res.render("airway");
+  res.render("airway", {title: titles.cheatsheet});
 });
 
 app.get("/perioperative", (req, res) => {
-  res.render("perioperative");
+  res.render("perioperative", {title: titles.protocols});
 });
 
- 
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
