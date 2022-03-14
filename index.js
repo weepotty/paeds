@@ -57,7 +57,16 @@ app.post("/", function(req, res){
   child.push({weight,age});
   let weightNum=parseFloat(weight);
 
-  
+// pdf links
+  app.get("/pdfs/cardiac-arr.pdf", function(req, res){
+    var tempFile="pdfs/cardiac-arr.pdf";
+    fs.readFile(tempFile, function (err,data){
+       res.contentType("application/pdf");
+       res.send(data);
+    });
+  });
+
+
   antibiotics.forEach(abx => {
     abx['amount'] = abx['dose'] * weightNum
   });
