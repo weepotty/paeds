@@ -379,7 +379,7 @@ table th {
   vertical-align: top; }
   table td:not([align]),
   table th:not([align]) {
-    text-align: inherit; }
+    text-align: left; }
 
 table th {
   color: #363636; }
