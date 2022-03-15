@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-const child=[]
+const child=[{weight: "?", age: "?"}]
 
 
 const premeds = [
@@ -57,7 +57,7 @@ const titles = {
 const parameters = [
   {name: "Weight", units: "kg"},
   {name: "Energy", units: "J"}, 
-  {name: "Tube size", units: " "},
+  {name: "Tube size (uncuffed)", units: " "},
   {name: "Tube length (oral)", units: "cm"},
   {name: "Tube length (nasal)", units: "cm"},
   {name: "Fluid (medical)", units: "ml"},
@@ -213,10 +213,12 @@ app.get("/pdfs/ppt-nov-21.pdf", function(req, res){
 });
 
 
-
 app.get("/", function (req, res) {
+  let weight = (parseInt(child[child.length - 1].weight))
+  let age = (parseInt(child[child.length-1].age))
+ 
 
-  res.render("home", {child, antibiotics, premeds, inductionDrugs, emergencyDrugs, antiemetics, painkillers, title: titles.cheatsheet})
+  res.render("home", {child, antibiotics, premeds, inductionDrugs, emergencyDrugs, antiemetics, painkillers, title: titles.cheatsheet, weight, age})
 })
 
 
@@ -337,15 +339,12 @@ else if (painkiller['amount'] > painkiller['max']) {
   });
 
 
-
-
-
-app.get("/wetflags", (req, res) => {
+app.get("/wetflag", (req, res) => {
 let weight = (parseInt(child[child.length - 1].weight))
 let age = (parseInt(child[child.length-1].age))
 const wetflag = [(age+4)*2, weight * 4, age/4+4, age/2+12, age/2+15, 20*weight, 10*weight, 0.1*weight, 0.1*weight, 2*weight]
 
-  res.render("wetflags", {child, title: titles.cheatsheet, wetflag, parameters});
+  res.render("wetflag", {child, title: titles.cheatsheet, wetflag, age, weight, parameters});
 });
 
 
@@ -359,7 +358,6 @@ app.get("/airway", (req, res) => {
     {name: "Tube length, nasal", formula: age/2+15, units:"cm"},
     {name: "LMA size"}
   ]
- 
 
 
   switch (true) {
@@ -381,12 +379,8 @@ app.get("/airway", (req, res) => {
     default: console.log("default")
   }
 
-  console.log(airwayDevices[3].formula)
 
-
-
-
-  res.render("airway", {airwayDevices, child, title: titles.cheatsheet});
+  res.render("airway", {airwayDevices, child, weight, age, title: titles.cheatsheet});
 });
 
 app.get("/fluids", (req, res) => {

@@ -1,5 +1,5 @@
 
-
+  
 
 const arrButtons = document.getElementsByClassName('arr-button')
 const arrModal = document.getElementById('arr-modal')

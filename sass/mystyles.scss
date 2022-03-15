@@ -10,6 +10,7 @@ $dark-green: #94b49f;
 $grey-blue: #789395;
 $beige: #e5e3c9;
 $beige-lighter: #f0efdf;
+$pink: rgb(218, 76, 100);
 
 // Update Bulma's global variables
 $family-sans-serif: "Nunito", sans-serif;
@@ -17,8 +18,10 @@ $grey-dark: $grey-blue;
 $grey-light: $beige;
 $primary: $light-green;
 $link: $dark-green;
+$danger: $pink;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
+
 
 // Update some of Bulma's component variables
 $body-background-color: $beige-lighter;

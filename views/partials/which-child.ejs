@@ -1,0 +1,25 @@
+
+
+
+
+ <% if (isNaN(weight) ){ %>
+    <% weight = "..." %>
+  <% } else { %>
+    <% weight = weight %>
+  <% }; %>
+  
+  <% if (isNaN(age) ){ %>
+    <% age = "..." %>
+  <% } else { %>
+    <% age = age %>
+  <% }; %>
+
+
+
+  <div style="float: right; margin: 0vw 10vw">
+    
+    <div class="box" style="position: fixed; z-index:1">
+      for a child of <span class="has-text-danger has-text-weight-bold is-size-5"><%= weight %></span> kg, aged <span class="has-text-danger has-text-weight-bold is-size-5"><%=age %></span> years
+    </div>
+  </div>
+
