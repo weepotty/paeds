@@ -54,18 +54,6 @@ const titles = {
   induction: "Induction"
 }
 
-const parameters = [
-  {name: "Weight", units: "kg"},
-  {name: "Energy", units: "J"}, 
-  {name: "Tube size (uncuffed)", units: " "},
-  {name: "Tube length (oral)", units: "cm"},
-  {name: "Tube length (nasal)", units: "cm"},
-  {name: "Fluid (medical)", units: "ml"},
-  {name: "Fluid (trauma)", units: "ml"},
-  {name: "Lorazepam", units: "mg"},
-  {name: "Adrenaline 1:10 000 IV", units: "ml"},
-  {name: "Glucose 10%", units: "ml"}
-]
 
 
 
@@ -342,9 +330,33 @@ else if (painkiller['amount'] > painkiller['max']) {
 app.get("/wetflag", (req, res) => {
 let weight = (parseInt(child[child.length - 1].weight))
 let age = (parseInt(child[child.length-1].age))
-const wetflag = [(age+4)*2, weight * 4, age/4+4, age/2+12, age/2+15, 20*weight, 10*weight, 0.1*weight, 0.1*weight, 2*weight]
+const parameters = [
+  {name: "Weight", formula:(age+4)*2, units: "kg"},
+  {name: "Energy", formula:weight * 4, units: "J"}, 
+  {name: "Tube size (uncuffed)", formula: age/4+4, units: " "},
+  {name: "Tube length (oral)", formula: age/2+12, units: "cm"},
+  {name: "Tube length (nasal)", formula: age/2+15, units: "cm"},
+  {name: "Fluid (medical)", formula: 20*weight,units: "ml"},
+  {name: "Fluid (trauma)", formula: 10*weight, units: "ml"},
+  {name: "Lorazepam", formula:0.1*weight, units: "mg"},
+  {name: "Adrenaline 1:10 000 IV", formula:0.1*weight, units: "ml"},
+  {name: "Glucose 10%", formula: 2*weight, units: "ml"}
+]
 
-  res.render("wetflag", {child, title: titles.cheatsheet, wetflag, age, weight, parameters});
+parameters.forEach (parameter => {
+  parameter['formula'] = parseFloat((parameter['formula']).toFixed(1))
+
+  if (isNaN(parameter['formula'])) {
+    parameter['formula']=" "
+  
+} else {
+  parameter['formula']=parameter['formula']
+}
+} )
+
+
+
+  res.render("wetflag", {child, title: titles.cheatsheet, age, weight, parameters});
 });
 
 
@@ -358,8 +370,7 @@ app.get("/airway", (req, res) => {
     {name: "Tube length, nasal", formula: age/2+15, units:"cm"},
     {name: "LMA size"}
   ]
-
-
+  
   switch (true) {
     case (weight < 5): airwayDevices[3].formula = 1
     break
@@ -376,8 +387,19 @@ app.get("/airway", (req, res) => {
  case (50 <= weight &&  weight <= 100): airwayDevices[3].formula = 5
  break;
 
+ 
+
     default: console.log("default")
   }
+
+  airwayDevices.forEach(device => {
+    if (isNaN(device['formula'])) {
+      device['formula']=" "
+    
+  } else {
+    device['formula']=device['formula']
+  }
+})
 
 
   res.render("airway", {airwayDevices, child, weight, age, title: titles.cheatsheet});
