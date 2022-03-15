@@ -226,7 +226,7 @@ app.post("/", function(req, res){
     if (abx['amount'] > abx['max']) {
       abx['amount'] = abx['max']
     } else {
-      abx['amount'] = abx['amount']
+      abx['amount'] = Math.floor(abx['amount'])
     }
   });
   
