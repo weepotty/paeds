@@ -61,11 +61,28 @@
       <div class="column">
         <!-- column 2 -->
         <div class="box">
-         <p>Fluid bolus 20ml/kg</p>
-         <p>Trauma 10ml/kg</p>
-         <p>10% Dextrose (hypoglycaemia) 2ml/kg</p>
-         <p>Maintenance 4/2/1 rule</p>
+      
 
+
+          <table class="table is-size-7 is-fullwidth has-text-left">
+      <tr>
+               <th></th>
+               <th>Rate</th>
+               <th></th>
+            </tr>
+              <tr>
+               <td>Maintenance fluids</td>
+               <td> <%= maintenanceFluid %> </td>
+               <td>ml/h</td>
+               </tr>
+               <tr>
+                <td>2/3 maintenance</td>
+                <td> <%= twoThirds %> </td>
+                <td>ml/h</td>
+                </tr>
+          
+         </table>
+        
         </div>
         <div class="box">
           <figure class="image is-4by3">
@@ -84,9 +101,10 @@
         
       </div>
     </div>
+    <%- include ("partials/footer") -%> 
   </div>
+
 </div>
 
 <!-- end of main content -->
 
-<%- include ("partials/footer") -%> 

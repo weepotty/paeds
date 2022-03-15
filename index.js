@@ -51,7 +51,8 @@ const painkillers = [
 const titles = {
   cheatsheet: "Cheatsheet",
   protocols: "Protocols",
-  induction: "Induction"
+  induction: "Induction",
+  contact: "Contact"
 }
 
 
@@ -387,9 +388,7 @@ app.get("/airway", (req, res) => {
  case (50 <= weight &&  weight <= 100): airwayDevices[3].formula = 5
  break;
 
- 
-
-    default: console.log("default")
+default: airwayDevices[3].formula="cannot compute, please re-enter weight"
   }
 
   airwayDevices.forEach(device => {
@@ -401,8 +400,26 @@ app.get("/airway", (req, res) => {
   }
 })
 
+let maintenanceFluid = 0
+switch (true) {
+  case (weight <= 10): maintenanceFluid = weight * 4
+  break
+  case (10 < weight &&  weight <= 20): maintenanceFluid = 40 + (weight-10) * 2
+  break;
+  case (20 < weight): maintenanceFluid = 60 + (weight-20)
+break;
 
-  res.render("airway", {airwayDevices, child, weight, age, title: titles.cheatsheet});
+default: maintenanceFluid="please re-enter weight"
+}
+
+
+let twoThirds = parseFloat((maintenanceFluid/3*2).toFixed(1))
+if (isNaN(twoThirds)) {
+  twoThirds = "please re-enter weight"
+} else {
+  twoThirds=parseFloat(twoThirds.toFixed(1))
+}
+  res.render("airway", {airwayDevices, child, weight, maintenanceFluid, twoThirds, age, title: titles.cheatsheet});
 });
 
 app.get("/fluids", (req, res) => {
@@ -430,5 +447,16 @@ app.get("/starterpack", (req, res) => {
 app.get("/powerpoints", (req, res) => {
   res.render("powerpoints", {title: titles.induction});
 });
+
+app.get("/contact", (req, res) => {
+
+res.render("contact", {title:titles.contact})
+
+})
+
+app.post("/contact", function(req, res){
+res.send("thank you, your form has been submitted")
+
+  res.redirect("/")})
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

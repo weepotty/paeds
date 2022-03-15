@@ -47,8 +47,6 @@ for (let buttons of dexButtons) {
    if (weight <5 ) {
    document.getElementById("analgesia-instructions").innerHTML = "weight<5kg: discuss NCA morphine prescription with consultant"
 
-
-
   } else if (weight >=5 && weight < 50) {
     document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol for <50kg"
     document.getElementById("under50").classList.toggle('is-hidden')
@@ -60,8 +58,25 @@ for (let buttons of dexButtons) {
   } else {
     document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol"
   }
- }
 
+
+
+let newPatient = document.getElementById("newPatient")
+let currentPatient = document.getElementById("currentPatient")
+  let childInput = document.getElementById("childInput")
+  if (weight>0) {
+childInput.classList.add("is-hidden")
+currentPatient.classList.remove("is-hidden")
+currentPatient.classList.add("is-hidden-touch")
+  }
+ }
+newPatient.addEventListener('click', () => {
+  childInput.classList.remove("is-hidden")
+  currentPatient.classList.add("is-hidden")
+  currentPatient.classList.remove("is-hidden-touch")
+}
+
+)
 
 document.addEventListener('DOMContentLoaded', () => {
 

@@ -26,10 +26,12 @@
           <div class="column">
             <!-- column 1 -->
 
-            <div class="box pt-4">
+            
+            <div class="box pt-4" id="childInput">
           
              
               <!-- start of form -->
+             
               <form action="/" method="POST">
 
                 <div class="field is-horizontal is-mobile">
@@ -64,16 +66,29 @@
                </form> 
                
             </div>
-            <%- include ("partials/jump-to") -%> 
+            
          
 
-            <div class="box columns mx-0">
-              <div class="column">
+            
               
+              <!-- currentpatient -->
+              <div class="box has-text-dark is-size-7 is-hidden" id="currentPatient">
+                <div class="column">
+                  <p class="has-text-weight-bold is-size-6">Current patient</p>
+                  <p>weight:<span class="has-text-danger has-text-weight-bold"> <%= weight %></span> kg</p>
+                  <p>age: <span class="has-text-danger has-text-weight-bold"><%= age %></span> years</p>
+                </div>
+                <div class="column pt-0">
+                  <div>
+                    <button id="newPatient" class="button is-primary is-small">new patient</button>
+                  </div>
+              </div>
+              </div>
 
-                
-              <!-- premeds -->
-<div class="box">
+              
+             <!-- premeds -->
+
+              <div class="box">
   <table class="table is-size-7 has-text-left is-fullwidth">
     <tr>
        <th>Drug</th>
@@ -86,9 +101,10 @@
        <td><%= premed.amount %> <%=premed.units %></td>
       </tr>    
      <% } %>
-
+     
+     
  </table>
-
+ <%- include ("partials/jump-to") -%> 
 
 </div>
 
@@ -226,10 +242,10 @@
   <p>Caudal</p>
   <p>Epidural</p>
 </div>
-          </div>
 
 
 
+</div>
           
           <div class="column">
             <!-- column 2 -->
@@ -247,10 +263,11 @@
            
           </div>
           
-        </div>
+        
         
       </div>
+      <%- include ("partials/footer") -%> 
     </div>
     
     <!-- end of main content -->
-    <%- include ("partials/footer") -%> 
+    
