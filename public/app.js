@@ -37,6 +37,31 @@ for (let buttons of dexButtons) {
 // })}
 
 
+ 
+ const submitButton = document.getElementById("submit")
+ submitButton.addEventListener('click', getWeight())
+
+ function getWeight (){
+   let weight = document.getElementById("weight").innerText;
+  
+   if (weight <5 ) {
+   document.getElementById("analgesia-instructions").innerHTML = "weight<5kg: discuss NCA morphine prescription with consultant"
+
+
+
+  } else if (weight >=5 && weight < 50) {
+    document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol for <50kg"
+    document.getElementById("under50").classList.toggle('is-hidden')
+    
+  } else if (weight > 50){
+    document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol for ≥50kg"
+    document.getElementById("over50").classList.toggle('is-hidden')
+
+  } else {
+    document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol"
+  }
+ }
+
 
 document.addEventListener('DOMContentLoaded', () => {
 

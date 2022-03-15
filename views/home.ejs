@@ -33,11 +33,11 @@
 
                 <div class="field is-horizontal is-mobile">
                   <div class="field-label">  
-                    <label for="weight" class="has-text-weight-bold"   >Weight</label>
+                    <label for="weight" class="has-text-weight-bold">Weight</label>
                   </div>
                   <div class="field-body">
                     <div class="field columns is-mobile is-vcentered">
-                        <div class="column is-one-fifth pl-3"><input id="weight" name="weight" class="input is-success is-small" required type="number" min="0" max="100" step="0.1"></div>
+                        <div class="column is-one-fifth pl-3"><input id="weight" name="weight" class="input is-success is-small" required type="number" min="0" max="100" step="0.1" value=" "></div>
                         <div class="column">kg</div>
                     </div> 
                   </div>
@@ -52,7 +52,7 @@
                   <div class="field-body">
                     <div class="field columns is-mobile is-vcentered">
                         <div class="column is-one-fifth pl-3"><input id="age" name="age" class="input is-success is-small" required type="number" min="0" max="16"></div>
-                        <div class="column">years <button class="button is-primary is-small ml-5" type="submit">Submit</button></div>
+                        <div class="column">years <button class="button is-primary is-small ml-5" id="submit" type="submit">Submit</button></div>
                         
                     </div>
                     
@@ -208,7 +208,23 @@
  </table>
 </div>
 
+<div class="box">
+<p id="analgesia-instructions" class="is-size-7 has-text-dark has-text-weight-bold"> </p>
+<figure class="image is-3by2 is-hidden" id="over50">
+  <embed class="has-ratio" src="pdfs/morphine-over50.pdf" frameborder="0" allowfullscreen></em>
+</figure>
+
+<figure class="image is-3by2 is-hidden" id="under50">
+  <embed class="has-ratio" src="pdfs/morphine-under50.pdf" frameborder="0" allowfullscreen></em>
+</figure>
+
+
+</div>
+
           </div>
+
+
+
           
           <div class="column">
             <!-- column 2 -->
