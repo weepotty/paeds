@@ -73,18 +73,16 @@
                 
               <!-- premeds -->
 <div class="box">
-  <table class="table is-size-7">
+  <table class="table is-size-7 has-text-left">
     <tr>
        <th>Drug</th>
-       <th>Amount</th>
-       
+       <th>Amount</th> 
     </tr>
 
     <% for (let premed of premeds) { %>
       <tr>
        <td><%= premed.name %></td>
-       <td> <%= premed.amount %> <%=premed.units %></td>
-        
+       <td><%= premed.amount %> <%=premed.units %></td>
       </tr>    
      <% } %>
 
