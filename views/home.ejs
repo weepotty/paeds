@@ -5,8 +5,8 @@
 <!-- tabs -->
 <div class="container mt-20">
   <%- include ("partials/which-child") -%> 
-  <%- include ("partials/jump-to") -%> 
-  <div class="tabs is-boxed my-0">
+  
+  <div class="tabs is-boxed my-0" id="topBox">
     <ul>
       <li class="is-active"><a href="/">Drugs</a></li>
       <li><a href="/airway">Airway + Fluids</a></li>
@@ -64,7 +64,7 @@
                </form> 
                
             </div>
-
+            <%- include ("partials/jump-to") -%> 
          
 
             <div class="box columns mx-0">
