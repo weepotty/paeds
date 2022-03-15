@@ -5,6 +5,7 @@
 <!-- tabs -->
 <div class="container mt-20">
   <%- include ("partials/which-child") -%> 
+  <%- include ("partials/jump-to") -%> 
   <div class="tabs is-boxed my-0">
     <ul>
       <li class="is-active"><a href="/">Drugs</a></li>
@@ -186,9 +187,9 @@
 
 
 <!-- analgesia -->
-<div class="box">
+<div class="box" id="analgesia">
   
-  <table class="table is-size-7 is-fullwidth has-text-left">
+  <table  class="table is-size-7 is-fullwidth has-text-left">
     <tr>
        <th>Drug</th>
        <th>Amount</th>
@@ -221,6 +222,10 @@
 
 </div>
 
+<div class="box">
+  <p>Caudal</p>
+  <p>Epidural</p>
+</div>
           </div>
 
 
@@ -235,14 +240,9 @@
             </div>
           
 
-            <div class="box">
-              <p>Caudal</p>
-              <p>Epidural</p>
-            </div>
+           
 
-            <div class="box">
-              <p>Reduce dose of NCA/PCA morphine?</p>
-            </div>
+           
           </div>
         </div>
       </div>
