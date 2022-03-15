@@ -5,12 +5,8 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const child=[]
-// const doses = {
-//   midazb: 0.3,
-//   midazo: 0.5,
-//   dexmed: 3
-//   }
-  
+
+
 const premeds = [
 {name: "Midazolam (buccal)", dose: 0.3, units: "mg", max: 10},
 {name: "Midazolam (oral)", dose: 0.5, units: "mg", max: 20},
@@ -57,6 +53,20 @@ const titles = {
   protocols: "Protocols",
   induction: "Induction"
 }
+
+const parameters = [
+  {name: "Weight", units: "kg"},
+  {name: "Energy", units: "J"}, 
+  {name: "Tube size", units: " "},
+  {name: "Tube length (oral)", units: "cm"},
+  {name: "Tube length (nasal)", units: "cm"},
+  {name: "Fluid (medical)", units: "ml"},
+  {name: "Fluid (trauma)", units: "ml"},
+  {name: "Lorazepam", units: "mg"},
+  {name: "Adrenaline 1:10 000 IV", units: "ml"},
+  {name: "Glucose 10%", units: "ml"}
+]
+
 
 
 app.set("view engine", "ejs");
@@ -205,6 +215,7 @@ app.get("/pdfs/ppt-nov-21.pdf", function(req, res){
 
 
 app.get("/", function (req, res) {
+
   res.render("home", {child, antibiotics, premeds, inductionDrugs, emergencyDrugs, antiemetics, painkillers, title: titles.cheatsheet})
 })
 
@@ -212,9 +223,10 @@ app.get("/", function (req, res) {
 app.post("/", function(req, res){
   const {weight, age} = req.body;
   // const weight = req.body.weight;
-  // age = req.body.age
+  // const age = req.body.age
   child.push({weight,age});
   let weightNum=parseFloat(weight);
+  
 
 //drug calculator code
 
@@ -223,23 +235,25 @@ app.post("/", function(req, res){
     if (abx['amount'] > abx['max']) {
       abx['amount'] = abx['max']
     } else {
-      abx['amount'] = abx['dose'] * weightNum
+      abx['amount'] = abx['amount']
     }
   });
   
   premeds.forEach(premed => {
-    premed['amount'] = premed['dose'] * weightNum
+    premed['amount'] = (premed['dose'] * weightNum)
+
+  
     if (premed['amount'] > premed['max']) {
       premed['amount'] = premed['max']
     } else {
-      premed['amount'] = premed['dose'] * weightNum
+      premed['amount'] = parseFloat(premed['amount'].toFixed(2));
     }
   });
 
   emergencyDrugs.forEach(edrug => {
-    edrug['amount'] = edrug['dose'] * weightNum;
-    edrug['volume'] = (edrug['amount'] / edrug['concentration']).toFixed(2);
-    edrug['maxvolume'] = Math.floor(edrug['max']/edrug['concentration']);
+    edrug['amount'] = parseFloat((edrug['dose'] * weightNum).toFixed(2));
+    edrug['volume'] = parseFloat((edrug['amount'] / edrug['concentration']).toFixed(2));
+    edrug['maxvolume'] = parseFloat(Math.floor(edrug['max']/edrug['concentration']));
 
     if (edrug['amount'] > edrug['max']) {
       edrug['amount'] = edrug['max']
@@ -248,13 +262,13 @@ app.post("/", function(req, res){
     
     else  {
       edrug['amount'] = edrug['dose'] * weightNum
-      edrug['volume'] = (edrug['amount'] / edrug['concentration']).toFixed(2)
+      edrug['volume'] = edrug['volume']
     }
   });
 
   inductionDrugs.forEach(idrug => {
-    idrug['amount'] = idrug['dose'] * weightNum;
-    idrug['volume'] = (idrug['amount'] / idrug['concentration']).toFixed(2);
+    idrug['amount'] = parseFloat((idrug['dose'] * weightNum).toFixed(2));
+    idrug['volume'] = parseFloat((idrug['amount'] / idrug['concentration']).toFixed(2));
     idrug['maxvolume'] = Math.floor(idrug['max']/idrug['concentration']);
 
     if (isNaN(idrug['volume'])) {
@@ -265,14 +279,14 @@ app.post("/", function(req, res){
       idrug['amount'] = idrug['max']
       idrug['volume'] = idrug['maxvolume']
     } else {
-      idrug['amount'] = idrug['dose'] * weightNum
-      idrug['volume'] = (idrug['amount'] / idrug['concentration']).toFixed(2);
+      idrug['amount'] = idrug['amount']
+      idrug['volume'] = idrug['volume'] 
     }
 });
 
 antiemetics.forEach(antiemetic => {
-  antiemetic['amount'] = antiemetic['dose'] * weightNum;
-  antiemetic['volume'] = (antiemetic['amount'] / antiemetic['concentration']).toFixed(2);
+  antiemetic['amount'] = parseFloat((antiemetic['dose'] * weightNum).toFixed(2));
+  antiemetic['volume'] = parseFloat((antiemetic['amount'] / antiemetic['concentration']).toFixed(2));
   antiemetic['maxvolume'] = Math.floor(antiemetic['max']/antiemetic['concentration']);
 
 
@@ -280,19 +294,19 @@ antiemetics.forEach(antiemetic => {
     antiemetic['amount'] = antiemetic['max']
     antiemetic['volume'] = antiemetic['maxvolume']
   } else {
-    antiemetic['amount'] = antiemetic['dose'] * weightNum
-    antiemetic['volume'] = (antiemetic['amount'] / antiemetic['concentration']).toFixed(2);
+    antiemetic['amount'] = antiemetic['amount']
+    antiemetic['volume'] = antiemetic['volume'];
   }
 });
 
 painkillers.forEach(painkiller => {
-  painkiller['amount'] = painkiller['dose'] * weightNum;
-  painkiller['volume'] = (painkiller['amount'] / painkiller['concentration']).toFixed(2);
+  painkiller['amount'] = parseFloat((painkiller['dose'] * weightNum).toFixed(2));
+  painkiller['volume'] = parseFloat((painkiller['amount'] / painkiller['concentration']).toFixed(2));
   painkiller['maxvolume'] = Math.floor(painkiller['max']/painkiller['concentration']);
  
 
 if (weightNum < 10) {
-  painkiller['amount'] = (painkiller['dose'] * weightNum)/2;
+  painkiller['amount'] = painkiller['amount']/2;
 }
 
 else if (painkiller['amount'] > painkiller['max']) {
@@ -305,15 +319,15 @@ else if (painkiller['amount'] > painkiller['max']) {
 }
 
    else {
-    painkiller['amount'] = painkiller['dose'] * weightNum
-    painkiller['volume'] = (painkiller['amount'] / painkiller['concentration']).toFixed(2);
+    painkiller['amount'] = painkiller['amount']
+    painkiller['volume'] = painkiller['volume']
   }
 
   if (isNaN(painkiller['volume'])) {
     painkiller['volume'] = " "
   }
   else {
-    painkiller['volume'] = (painkiller['amount'] / painkiller['concentration']).toFixed(2);
+    painkiller['volume'] = painkiller['volume']
 
   }
 });
@@ -322,9 +336,57 @@ else if (painkiller['amount'] > painkiller['max']) {
  res.redirect("/");
   });
 
- 
+
+
+
+
 app.get("/wetflags", (req, res) => {
-  res.render("wetflags", {title: titles.cheatsheet});
+let weight = (parseInt(child[child.length - 1].weight))
+let age = (parseInt(child[child.length-1].age))
+const wetflag = [(age+4)*2, weight * 4, age/4+4, age/2+12, age/2+15, 20*weight, 10*weight, 0.1*weight, 0.1*weight, 2*weight]
+
+  res.render("wetflags", {child, title: titles.cheatsheet, wetflag, parameters});
+});
+
+
+app.get("/airway", (req, res) => {
+  let weight = (parseInt(child[child.length - 1].weight))
+  let age = (parseInt(child[child.length-1].age))
+  
+  const airwayDevices = [
+    {name: "ETT microcuffed", formula: age/4+4, units:" "},
+    {name: "Tube length, oral", formula: age/2+12, units:"cm"},
+    {name: "Tube length, nasal", formula: age/2+15, units:"cm"},
+    {name: "LMA size"}
+  ]
+ 
+
+
+  switch (true) {
+    case (weight < 5): airwayDevices[3].formula = 1
+    break
+    case (5 <= weight &&  weight < 10): airwayDevices[3].formula = 1.5
+    break;
+    case (10 <= weight &&  weight < 20): airwayDevices[3].formula = 2
+ break;
+ case (20 <= weight &&  weight < 30): airwayDevices[3].formula = 2.5
+ break;
+ case (30 <= weight &&  weight < 40): airwayDevices[3].formula = 3
+ break;
+ case (40 <= weight &&  weight < 50): airwayDevices[3].formula = 4
+ break;
+ case (50 <= weight &&  weight <= 100): airwayDevices[3].formula = 5
+ break;
+
+    default: console.log("default")
+  }
+
+  console.log(airwayDevices[3].formula)
+
+
+
+
+  res.render("airway", {airwayDevices, child, title: titles.cheatsheet});
 });
 
 app.get("/fluids", (req, res) => {
@@ -340,9 +402,6 @@ app.get("/emergencies", (req, res) => {
   res.render("emergencies", {title: titles.protocols});
 });
 
-app.get("/airway", (req, res) => {
-  res.render("airway", {title: titles.cheatsheet});
-});
 
 app.get("/perioperative", (req, res) => {
   res.render("perioperative", {title: titles.protocols});

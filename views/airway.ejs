@@ -15,10 +15,30 @@
       <div class="column">
         <!-- column 1 -->
         <div class="box">
-          <p>ETT microcuff</p>
-          <p>ET tube length oral</p>
-          <p>ET tube length nasal</p>
-          <p>LMA size</p>
+          <table class="table is-size-7 is-fullwidth">
+            <tr>
+               <th></th>
+               <th>Value</th>
+               <th>Units</th>
+            </tr>
+        
+            
+            <% for (let device of airwayDevices) { %>
+              <tr>
+               <td><%= device.name %></td>
+               <td> <%= device.formula %> </td>
+               <td> <%= device.units %></td>
+               
+               
+               <% } %>
+               
+           
+               <td> </td>
+            </tr>     
+
+         </table>
+
+         
           
         </div>
         <div class="box">

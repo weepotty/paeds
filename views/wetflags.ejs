@@ -14,14 +14,39 @@
       <div class="column">
         <!-- column 1 -->
         <div class="box">
-          <p>Weight (age+4) x 2</p>
+          
+          
+          <table class="table is-size-7 is-fullwidth">
+            <tr>
+               <th></th>
+               <th>Value</th>
+               <th>Units</th>
+            </tr>
+        
+            <% let i=0 %>;
+            <% for (let parameter of parameters) { %>
+              <tr>
+               <td><%= parameter.name %></td>
+               <td> <%= wetflag[i].toFixed(1);%> </td>
+               <% i++ %>
+               <td> <%=parameter.units %></td>
+               
+               <% } %>
+               
+           
+               <td> </td>
+            </tr>     
+
+         </table>
+          
+          <!-- <p>Weight (age+4) x 2</p>
           <p>Energy 4J/kg</p>
           <p>Tube diameter age/4+4</p>
           <p>Tube length oral age/2+12; nasal age/2 +15</p> 
           <p>Fluid 20ml/kg for medical, 10mg/kg for trauma</p>
           <p>Lorazepam 0.1mg/kg</p>
           <p>Adrenaline IV 0.1ml/kg of 1:10 000</p>
-          <p>Glucose 10% 2ml/kg</p>
+          <p>Glucose 10% 2ml/kg</p> -->
         
         </div>
         <div class="box">maybe a <a href="">link </a>to the WETFLAG calculations</div>
@@ -31,7 +56,10 @@
       <div class="column">
         <!-- column 2 -->
         <div class="box">
-          put a picture of ALS algorithm here
+          <figure class="image is-3by5">
+            <iframe class="has-ratio" src="/pdfs/ALS.pdf" frameborder="0" allowfullscreen></iframe>
+          </figure>
+        
         </div>
         
       </div>
