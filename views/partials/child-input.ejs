@@ -1,0 +1,41 @@
+<div class="box" id="childInput">
+  <form action="<%= currentPage %> " method="POST">
+  <table class="table is-size-7 has-text-centered">
+
+
+      <tr>
+       <td class="is-vcentered">Weight</td>
+    <td><input id="weight" name="weight" class="input is-success is-small" required type="number" min="0" max="100" step="0.1" value=" "></td>
+    <td class="is-vcentered">kg</td>
+    <td class="is-vcentered"></td>
+    <td class="is-vcentered"></td>
+    <td class="is-vcentered"></td>
+     <tr>
+      <td class="is-vcentered">Age</td>
+      <td><input id="age" name="age" class="input is-success is-small" required type="number" min="0" max="16"></td>
+      <td class="is-vcentered">years</td>
+      <td class="is-vcentered"><input id="ageMonths" name="ageMonths" class="input is-success is-small"  type="number" min="0" max="11"></td>
+      <td class="is-vcentered">months</td>
+      <td><button class="button is-primary is-small" id="submit" type="submit">Submit</button></td>
+    </tr>
+     
+   
+ </table></form>
+</div>
+<%- include ("jump-to") -%> 
+
+<!-- currentpatient -->
+<div class="box has-text-dark is-size-7 is-hidden" id="currentPatient">
+<div class="column">
+<p class="has-text-weight-bold is-size-6">Current patient</p>
+<p>weight:<span class="has-text-danger has-text-weight-bold"> <%= weight %></span> kg</p>
+<p>age: <span class="has-text-danger has-text-weight-bold"><%= age %></span> years</p>
+</div>
+<div class="column pt-0">
+<div>
+<button id="newPatient" class="button is-primary is-small">new patient</button>
+</div>
+</div>
+</div>
+
+<div class="block"><button id="newPatientPhone" class="button is-small is-white is-hidden">New patient</button></div>

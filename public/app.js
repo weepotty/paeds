@@ -92,12 +92,12 @@ for (let buttons of dexButtons) {
 let currentPatient = document.getElementById("currentPatient")
   let childInput = document.getElementById("childInput")
   if (weight>0) {
-childInput.classList.toggle("is-hidden")
+childInput.classList.add("is-hidden")
 currentPatient.classList.remove("is-hidden")
 currentPatient.classList.add("is-hidden-mobile")
 document.getElementById("newPatientPhone").classList.remove("is-hidden")
 document.getElementById("newPatientPhone").classList.add("is-hidden-tablet")
-document.getElementById("childBanner").classList.remove("is-hidden")
+
 
   }
  }

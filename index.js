@@ -7,6 +7,8 @@ const app = express();
 const child=[{weight: "?", age: "?"}]
 
 
+
+
 const premeds = [
 {name: "Midazolam (buccal)", dose: 0.3, units: "mg", max: 10},
 {name: "Midazolam (oral)", dose: 0.5, units: "mg", max: 20},
@@ -205,9 +207,10 @@ app.get("/pdfs/ppt-nov-21.pdf", function(req, res){
 app.get("/", function (req, res) {
   let weight = (parseFloat(child[child.length - 1].weight))
   let age = (parseFloat(child[child.length-1].age))
- 
+  let currentPage = req.url
+console.log(currentPage)
 
-  res.render("home", {child, antibiotics, premeds, inductionDrugs, emergencyDrugs, antiemetics, painkillers, title: titles.cheatsheet, weight, age})
+  res.render("home", {child, currentPage, antibiotics, premeds, inductionDrugs, emergencyDrugs, antiemetics, painkillers, title: titles.cheatsheet, weight, age})
 })
 
 
@@ -325,7 +328,14 @@ else if (painkiller['amount'] > painkiller['max']) {
 
  res.redirect("/");
   });
-
+  app.post("/wetflag", (req, res) => {
+    const {weight, age} = req.body;
+    // const weight = req.body.weight;
+    // const age = req.body.age
+    child.push({weight,age});
+  res.redirect('/wetflag')
+  
+  })
 
 app.get("/wetflag", (req, res) => {
 let weight = (parseInt(child[child.length - 1].weight))
@@ -353,12 +363,18 @@ parameters.forEach (parameter => {
   parameter['formula']=parameter['formula']
 }
 } )
-
-
-
-  res.render("wetflag", {child, title: titles.cheatsheet, age, weight, parameters});
+let currentPage = req.url
+  res.render("wetflag", {currentPage, child, title: titles.cheatsheet, age, weight, parameters});
 });
 
+app.post("/airway", (req, res) => {
+  const {weight, age} = req.body;
+  // const weight = req.body.weight;
+  // const age = req.body.age
+  child.push({weight,age});
+res.redirect('/airway')
+
+})
 
 app.get("/airway", (req, res) => {
   let weight = (parseInt(child[child.length - 1].weight))
@@ -423,10 +439,9 @@ if (isNaN(twoThirds)) {
 } else {
   twoThirds=parseFloat(twoThirds.toFixed(1))
 }
+let currentPage = req.url
 
-
-
-  res.render("airway", {airwayDevices, observations, child, weight, maintenanceFluid, twoThirds, age, title: titles.cheatsheet});
+  res.render("airway", {airwayDevices, currentPage, observations, child, weight, maintenanceFluid, twoThirds, age, title: titles.cheatsheet});
 });
 
 app.get("/fluids", (req, res) => {
