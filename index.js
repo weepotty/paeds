@@ -369,10 +369,10 @@ let currentPage = req.url
 });
 
 app.post("/airway", (req, res) => {
-  const {weight, age} = req.body;
+  const {weight, age, months} = req.body;
   // const weight = req.body.weight;
   // const age = req.body.age
-  child.push({weight,age});
+  child.push({weight,age, months});
 res.redirect('/airway')
 
 })
