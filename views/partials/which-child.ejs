@@ -12,10 +12,19 @@
 <% } else { %>
   <% age = age %>
 <% }; %>
+<% if (isNaN(months) ){ %>
+  <% months = "..." %>
+<% } else { %>
+  <% months = months %>
+<% }; %>
 
 
- <div class="is-hidden-tablet is-size-6 has-text-centered has-text-white has-background-grey-dark" style="position: sticky; z-index:1; top:50px" id="childBanner">
-  for a child of <span class="has-text-info has-text-weight-bold is-size-6" id="weight"><%= weight %></span> kg, aged <span class="has-text-info has-text-weight-bold is-size-6" id="age"><%=age %></span> years
+ <div class="is-hidden is-size-6 has-text-centered has-text-white has-background-grey-dark" style="position: sticky; z-index:1; top:50px" id="childBanner">
+  for a child of <span class="has-text-info has-text-weight-bold is-size-6" id="weight"><%= weight %></span> kg, aged <span class="has-text-info has-text-weight-bold is-size-6" id="age"><%=age %></span>y
+  
+  
+  <span class="is-hidden" id="monthsBanner">
+    <span class="has-text-info has-text-weight-bold is-size-6" id="monthsBannerText"><%= months %></span>m</span>
   </div> 
 
 

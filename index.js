@@ -4,9 +4,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
-const child=[{weight: "?", age: "?"}]
-
-
+const child=[{weight: "?", age: "?", months: "?"}]
 
 
 const premeds = [
@@ -207,18 +205,19 @@ app.get("/pdfs/ppt-nov-21.pdf", function(req, res){
 app.get("/", function (req, res) {
   let weight = (parseFloat(child[child.length - 1].weight))
   let age = (parseFloat(child[child.length-1].age))
+  let months = (parseFloat(child[child.length-1].months))
   let currentPage = req.url
-console.log(currentPage)
 
-  res.render("home", {child, currentPage, antibiotics, premeds, inductionDrugs, emergencyDrugs, antiemetics, painkillers, title: titles.cheatsheet, weight, age})
+
+  res.render("home", {child, currentPage, antibiotics, premeds, inductionDrugs, emergencyDrugs, antiemetics, painkillers, title: titles.cheatsheet, weight, age, months})
 })
 
 
 app.post("/", function(req, res){
-  const {weight, age} = req.body;
+  const {weight, age, months} = req.body;
   // const weight = req.body.weight;
   // const age = req.body.age
-  child.push({weight,age});
+  child.push({weight,age,months});
   
 
 //drug calculator code
@@ -328,11 +327,12 @@ else if (painkiller['amount'] > painkiller['max']) {
 
  res.redirect("/");
   });
+
   app.post("/wetflag", (req, res) => {
-    const {weight, age} = req.body;
+    const {weight, age, months} = req.body;
     // const weight = req.body.weight;
     // const age = req.body.age
-    child.push({weight,age});
+    child.push({weight,age,months});
   res.redirect('/wetflag')
   
   })
@@ -364,7 +364,7 @@ parameters.forEach (parameter => {
 }
 } )
 let currentPage = req.url
-  res.render("wetflag", {currentPage, child, title: titles.cheatsheet, age, weight, parameters});
+  res.render("wetflag", {currentPage, child, title: titles.cheatsheet, age, weight, months, parameters});
 });
 
 app.post("/airway", (req, res) => {
@@ -379,6 +379,7 @@ res.redirect('/airway')
 app.get("/airway", (req, res) => {
   let weight = (parseInt(child[child.length - 1].weight))
   let age = (parseInt(child[child.length-1].age))
+  let months = (parseInt(child[child.length-1].months))
   
   const observations = [
     {name: "RR", value: parseFloat(24-age/2), units: "breaths/min"},
@@ -386,12 +387,14 @@ app.get("/airway", (req, res) => {
   ]
 
   const airwayDevices = [
-    {name: "ETT microcuffed", formula: age/4+3.5, units:" "},
+    {name: "ETT microcuffed", formula: age/4+3.5, units:"mm (ID)"},
     {name: "Tube length, oral", formula: age/2+12, units:"cm"},
     {name: "Tube length, nasal", formula: age/2+15, units:"cm"},
     {name: "LMA size"}
   ]
   
+
+
   switch (true) {
     case (weight < 5): airwayDevices[3].formula = 1
     break
@@ -420,6 +423,17 @@ default: airwayDevices[3].formula="cannot compute, please re-enter weight"
   }
 })
 
+ 
+switch (true) {
+  case (1 <= age && age < 2): airwayDevices[0].formula = 3.5
+break;
+case (age <1): airwayDevices[0].formula = 3.0
+break;
+
+}
+
+
+
 let maintenanceFluid = 0
 switch (true) {
   case (weight <= 10): maintenanceFluid = weight * 4
@@ -441,7 +455,7 @@ if (isNaN(twoThirds)) {
 }
 let currentPage = req.url
 
-  res.render("airway", {airwayDevices, currentPage, observations, child, weight, maintenanceFluid, twoThirds, age, title: titles.cheatsheet});
+  res.render("airway", {airwayDevices, currentPage, observations, child, months, weight, maintenanceFluid, twoThirds, age, title: titles.cheatsheet});
 });
 
 app.get("/fluids", (req, res) => {

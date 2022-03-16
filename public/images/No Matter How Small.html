@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:5000/ -->
+<html lang="en" class="has-navbar-fixed-top"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./No Matter How Small_files/mystyles.css">
+
+    <title id="title">No Matter How Small</title>
+    <link rel="icon" type="image/x-icon" href="./No Matter How Small_files/favicon.ico">
+    <link rel="stylesheet" href="./No Matter How Small_files/font-awesome.min.css">
+  </head>
+  <body style="cursor: auto;">
+    <!-- Navigation Bar -->
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="http://localhost:5000/">
+          <img src="./No Matter How Small_files/favicon.ico" height="112">
+        </a>
+
+
+        <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+  <span aria-hidden="true"></span>✨
+  <span aria-hidden="true"></span>
+  <span aria-hidden="true"></span>
+</a>
+
+      </div>
+
+
+
+      <div id="navMenu" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="http://localhost:5000/"> Cheatsheet </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="http://localhost:5000/emergencies"> Protocols </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="http://localhost:5000/emergencies"> Emergencies </a>
+              <a class="navbar-item" href="http://localhost:5000/perioperative"> Perioperative </a>
+              <a class="navbar-item" href="http://localhost:5000/pain"> Pain </a>
+              <!-- <hr class="navbar-divider" />
+              <a class="navbar-item"> Report an issue </a> -->
+            </div>
+          </div>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="http://localhost:5000/starterpack"> Induction </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="http://localhost:5000/starterpack"> Trainee Guidelines </a>
+              <a class="navbar-item" href="http://localhost:5000/powerpoints"> Induction Powerpoint Presentations </a>
+
+              <!-- <hr class="navbar-divider" />
+              <a class="navbar-item"> Report an issue </a> -->
+            </div>
+          </div>
+
+         
+        </div>
+      
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a href="http://localhost:5000/contact" class="button is-primary" id="contact">
+                <strong>Contact</strong>
+              </a>
+              <a class="button is-light is-hidden"> Log in </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <!-- End Nav Bar -->
+
+<!-- title -->
+
+
+
+
+
+
+
+      <h1 id="topBox" class="has-background-white title is-size-5 pt-1 mb-0 has-text-link has-text-centered">
+        Cheatsheet </h1>
+       
+       
+      
+
+  
+
+
+
+
+ 
+ 
+
+
+
+
+  
+
+
+
+  
+
+
+  
+
+
+
+ <div class="is-hidden is-size-6 has-text-centered has-text-white has-background-grey-dark" style="position: sticky; z-index:1; top:50px" id="childBanner">
+  for a child of <span class="has-text-info has-text-weight-bold is-size-6" id="weight">13</span> kg, aged <span class="has-text-info has-text-weight-bold is-size-6" id="age">3</span> years, <span class="has-text-info has-text-weight-bold is-size-6" id="months">...</span> months
+  </div> 
+
+
+  
+
+<!-- tabs -->
+<div class="container">
+
+  
+  <div class="tabs is-boxed my-0 mt-3">
+    <ul>
+      <li class="is-active"><a href="http://localhost:5000/">Drugs</a></li>
+      <li><a href="http://localhost:5000/airway">Airway + Fluids</a></li>
+      <li><a href="http://localhost:5000/wetflag">WETFLAG</a></li>
+      
+    </ul>
+  </div>
+  <!--end tabs -->
+  
+   
+  
+      <!-- start of main content -->
+      
+      <div class="notification is-primary">
+     
+        <div class="columns">
+          <div class="column">
+            <!-- column 1 -->
+
+            <div class="box" id="childInput">
+  <form action="http://localhost:5000/" method="POST">
+  <table class="table is-size-7 has-text-centered">
+
+
+      <tbody><tr>
+       <td class="is-vcentered">Weight</td>
+    <td><input id="weight" name="weight" class="input is-success is-small" required="" min="0" type="number" max="100" step="0.1" value=""></td>
+    <td class="is-vcentered">kg</td>
+    <td class="is-vcentered"></td>
+    <td class="is-vcentered"></td>
+    <td class="is-vcentered"></td>
+     </tr><tr>
+      <td class="is-vcentered">Age</td>
+      <td><input id="age" name="age" class="input is-success is-small" required="" type="number" min="0" max="16"></td>
+      <td class="is-vcentered">years</td>
+      <td class="is-vcentered"><input id="ageMonths" name="ageMonths" class="input is-success is-small" type="number" min="0" max="11"></td>
+      <td class="is-vcentered">months</td>
+      <td><button class="button is-primary is-small" id="submit" type="submit">Submit</button></td>
+    </tr>
+     
+   
+ </tbody></table></form>
+</div>
+
+
+
+
+
+
+  <div style="float: right; margin: 0 " class="is-hidden-tablet">
+    
+    <div class="box is-dark has-text-justified" style="position: fixed; z-index:1">
+      <a href="http://localhost:5000/#analgesia" class="" style="text-decoration: none;">👇
+      <span class="is-size-7">to PCA</span> </a>
+    </div>
+  
+  </div>
+
+ 
+
+<!-- currentpatient -->
+<div class="box has-text-dark is-size-7 is-hidden" id="currentPatient">
+<div class="column">
+<p class="has-text-weight-bold is-size-6">Current patient</p>
+<p>weight:<span class="has-text-danger has-text-weight-bold"> 13</span> kg</p>
+<p>age: <span class="has-text-danger has-text-weight-bold">3</span> years</p>
+</div>
+<div class="column pt-0">
+<div>
+<button id="newPatient" class="button is-primary is-small">new patient</button>
+</div>
+</div>
+</div>
+
+<div class="block"><button id="newPatientPhone" class="button is-small is-white is-hidden">New patient</button></div> 
+            
+
+              <!-- start of form -->
+             
+              <!-- <form action="/" method="POST">
+
+                <div class="field is-horizontal is-mobile">
+                  <div class="field-label">  
+                    <label for="weight" class="has-text-weight-bold">Weight</label>
+                  </div>
+                  <div class="field-body">
+                    <div class="field columns is-mobile is-vcentered">
+                        <div class="column is-one-fifth pl-3"><input id="weight" name="weight" class="input is-success is-small" required type="number" min="0" max="100" step="0.1" value=" "></div>
+                        <div class="column">kg</div>
+                    </div> 
+                  </div>
+                </div>
+
+             
+
+                <div class="field is-horizontal is-mobile">
+                  <div class="field-label">
+                    <label for="age" class="has-text-weight-bold">Age</label>
+                  </div>
+                  <div class="field-body">
+                    <div class="field columns is-mobile is-vcentered">
+                        <div class="column is-one-fifth pl-3"><input id="age" name="age" class="input is-success is-small" required type="number" min="0" max="16"></div>
+                        <div class="column">years <button class="button is-primary is-small ml-5" id="submit" type="submit">Submit</button></div>
+                        
+                    </div>
+                    
+
+                  </div>
+                </div>
+               
+               </form> 
+               
+            </div> -->
+            
+            <!-- end of form -->
+            
+            
+              
+             
+
+             <!-- premeds -->
+
+              <div class="box">
+  <table class="table is-size-7 has-text-left">
+    <tbody><tr>
+       <th>Drug</th>
+       <th>Amount</th> 
+    </tr>
+
+    
+      <tr>
+       <td>Midazolam (buccal)</td>
+       <td>3.9 mg</td>
+      </tr>    
+     
+      <tr>
+       <td>Midazolam (oral)</td>
+       <td>6.5 mg</td>
+      </tr>    
+     
+      <tr>
+       <td>Dexmedetomidine</td>
+       <td>26 mcg</td>
+      </tr>    
+     
+     
+     
+ </tbody></table>
+ 
+
+</div>
+
+<!-- emergency drugs -->
+<div class="box">
+  
+  <table class="table is-size-7 is-fullwidth has-text-left">
+    <tbody><tr>
+       <th>Drug</th>
+       <th>Amount</th>
+       <th>Volume (mls)</th>
+    </tr>
+ 
+    
+     <tr>
+      <td>Suxamethonium (IV)</td>
+       <td> 13 mg</td>
+      
+       <td> 0.13 </td>
+     </tr>    
+    
+     <tr>
+      <td>Atropine</td>
+       <td> 260 mcg</td>
+      
+       <td> 0.43 </td>
+     </tr>    
+    
+ </tbody></table>
+
+
+</div>
+<!-- induction drugs-->
+
+<div class="box">
+  
+  <table class="table is-size-7 is-fullwidth has-text-left">
+    <tbody><tr>
+       <th>Drug</th>
+       <th>Amount</th>
+       
+       <th>Volume (mls)</th>
+    </tr>
+ 
+    
+      <tr>
+       <td>Propofol 2%</td>
+        <td> 39 mg</td>
+        <td> 1.95 </td>
+      </tr>    
+     
+      <tr>
+       <td>Ketamine (IV)</td>
+        <td> 26 mg</td>
+        <td> 2.6 </td>
+      </tr>    
+     
+      <tr>
+       <td>Rocuronium (normal)</td>
+        <td> 7.8 mg</td>
+        <td> 0.78 </td>
+      </tr>    
+     
+      <tr>
+       <td>Rocuronium (RSI)</td>
+        <td> 13 mg</td>
+        <td> 1.3 </td>
+      </tr>    
+     
+      <tr>
+       <td>Neostig/Glyco</td>
+        <td> 0.26 ml</td>
+        <td> 0.26 </td>
+      </tr>    
+     
+ </tbody></table>
+
+
+</div>
+            
+            
+<!-- antibiotics -->
+
+<div class="box">
+  
+  <table class="table is-size-7 has-text-left">
+    <tbody><tr>
+       <th>Drug</th>
+       <th></th>
+       <th></th>
+       <th>Amount</th>
+       
+       
+    </tr>
+ 
+    
+     <tr>
+      <td>Cefuroxime</td>
+      <td></td>
+      <td></td>
+      <td> 650  mg</td>
+       
+     </tr>    
+    
+     <tr>
+      <td>Co-amoxiclav</td>
+      <td></td>
+      <td></td>
+      <td> 390  mg</td>
+       
+     </tr>    
+    
+     <tr>
+      <td>Metronidazole</td>
+      <td></td>
+      <td></td>
+      <td> 97  mg</td>
+       
+     </tr>    
+    
+     <tr>
+      <td>Gentamicin (3mg/kg)</td>
+      <td></td>
+      <td></td>
+      <td> 39  mg</td>
+       
+     </tr>    
+    
+ </tbody></table>
+
+
+</div>
+         
+<!-- antiemetics -->
+<div class="box">
+  
+  <table class="table is-size-7 is-fullwidth has-text-left">
+    <tbody><tr>
+       <th>Drug</th>
+       <th>Amount</th>
+       <th>Volume (mls)</th>
+    </tr>
+ 
+    
+      <tr>
+       <td>Ondansetron</td>
+        <td> 1.95 mg</td>
+       
+        <td> 0.97 </td>
+      </tr>    
+     
+      <tr>
+       <td>Dexamethasone</td>
+        <td> 1.95 mg</td>
+       
+        <td> 0.49 </td>
+      </tr>    
+     
+      
+ </tbody></table>
+</div>
+
+
+<!-- analgesia -->
+<div class="box" id="analgesia">
+  
+  <table class="table is-size-7 is-fullwidth has-text-left">
+    <tbody><tr>
+       <th>Drug</th>
+       <th>Amount</th>
+       <th>Volume (mls)</th>
+       <th>Frequency</th>
+    </tr>
+ 
+    
+      <tr>
+       <td>Paracetamol IV</td>
+        <td> 195 mg</td>
+        <td> 19.5 </td>
+        <td> 4-6 hrly, max QDS </td>
+      </tr>    
+  
+      <tr>
+       <td>Ibuprofen PO</td>
+        <td> 130 mg</td>
+        <td>   </td>
+        <td> 6 hrly, max TDS </td>
+      </tr>    
+  
+      <tr>
+       <td>Diclofenac PO/PR</td>
+        <td> 13 mg</td>
+        <td>   </td>
+        <td> 8 hrly </td>
+      </tr>    
+  
+      
+ </tbody></table>
+</div>
+
+<div class="box">
+<p id="analgesia-instructions" class="is-size-7 has-text-dark has-text-weight-bold"> </p>
+<figure class="image is-5by3 is-hidden" id="over50">
+  <embed class="has-ratio" src="pdfs/morphine-over50.pdf" frameborder="0" allowfullscreen="">
+</figure>
+
+<figure class="image is-3by2 is-hidden" id="under50">
+  <embed class="has-ratio" src="pdfs/morphine-under50.pdf" frameborder="0" allowfullscreen="">
+</figure>
+
+
+</div>
+
+<div class="box is-size-7">
+  info about caudal/epidural goes here
+</div>
+
+</div>
+<!-- start of pictures -->
+
+          
+          <div class="column">
+            <!-- column 2 -->
+            <div class="box">
+              <img src="./No Matter How Small_files/paracetamol-iv.png">
+              <img src="./No Matter How Small_files/paracetamol-oral.png">
+              <img src="./No Matter How Small_files/paracetamol-sticker.png">
+            </div>
+            
+          
+          
+
+           
+
+           
+          </div>
+          
+        
+        
+      </div>
+      
+<div class="has-text-right"><button class="button"><a href="http://localhost:5000/#topBox" style="text-decoration:none">☝ Back to top </a></button></div>
+
+
+<script src="./No Matter How Small_files/app.js"></script>
+
+
+
+ 
+    </div>
+
+    
+    <!-- end of main content -->
+    </div></body><div id="vidcor-container"><link rel="stylesheet" href="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/css/cadcom.css" type="text/css">
+<link rel="stylesheet" href="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/css/style.css" type="text/css">
+<link href="./No Matter How Small_files/css" rel="stylesheet">
+
+<!--Action frame start--->
+<div id="cc-recording-web" class="recording-option-popup-container">
+	<!-- <iframe src="about:blank" style="visibility:hidden;" allowtransparency="true" application="yes" allow="microphone;camera;speaker;" id="cc-recording-web"
+            frameBorder="0" style=""></iframe> -->
+</div>
+<!---End-->
+
+
+<!--Toster for message show dynamic--->
+<div id="fde-add-brading-logo">
+</div>
+<!---End-->
+
+<!--Toster for message show dynamic--->
+<div id="fde-add-toster-web">
+</div>
+<!---End-->
+
+<!--Gmail frame add Start-->
+<div id="cc-video-search" style="z-index: 1000000004;display: none;position: fixed;top:0;width: 100vw;height: 100vh;background: rgba(0,0,0, 0.5);">
+</div>
+<!--End-->
+<!--2f Login frame add Start-->
+<div id="fde-2flogin-frame" style="z-index: 1000000003;position: fixed;top: 5%;left:30%;">
+
+</div>
+<!--End-->
+<!--Video frame start--->
+<div id="cc-recording-block" style="display: none;z-index: 1000000002;bottom: 20px; left: 100px;">
+	<div class="cc-personal-recorder-view show" id="vcc-ffcam-container">
+		<table>
+			<tbody><tr>
+				<td id="vcc-left-position"></td>
+				<td>
+					<!--<div class="timer_count" id="vcc-timer-elem"></div>-->
+					<!-- <div class="timer_count" id="vcc-timer-elem" style="display: none;"></div> -->
+					<div class="cc-ffcam-view-wrap cc-round-shadow" style="display: inline-block;">
+						<div class="cc-ffcam-view size-1 cc-round" id="vcc-video-frame">
+							<div class="cc-ffcam-iframe-container" id="vidcor-video-frame">
+								<div class="fl-loader-bg" id="fde-video-loader" style="opacity: 0;">
+									<div class="fl-loading-bar-spinner fl-spinner sml">
+										<div class="fl-spinner-icon sml"></div>
+									</div>
+								</div>
+								<!-- <img id="vidcor-ff-img" style="width:100%;	object-fit:cover; height:100%;"
+									onerror="this.onerror=null;this.src='chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/user.jpeg';" /> -->
+								<div id="vidcor-ff-img" style="width:100%;	object-fit:cover; height:100%; display: none;">
+									<div style="text-align: center;padding-top: 40px;font-weight: bold;font-family: &#39;Circular-Loom&#39;;">Close other apps</div>
+									<div style="padding-top: 25px;font-size: 13px;text-align: center;font-family: &#39;Circular-Loom&#39;;">
+										It looks like some other app is <br> already using your camera.
+									</div>
+									<div style="text-align: center;pointer-events: all;padding-top: 10px;">
+										<button id="retryVideoFrmae" style="cursor: pointer;background-color: #1e51c39c;color: #fff;border: black;border-radius: 10px;width: 70px;height: 25px;">Retry</button>
+									</div>
+								</div>
+								<iframe src="./No Matter How Small_files/iframe.html" id="vidcor-ff-cam" class="cc-zoom1" allow="camera;microphone"></iframe>
+							</div>
+
+
+
+							<div class="cc-camera-type-blk" style="display: none;">
+								<div class="cc-camera-type">
+									<div class="c-shape-sqr cc-tt" id="fde-square-click">
+										<span class="cc-tt-hint">Click to change the shape<br>to square</span>
+									</div>
+									<div class="c-shape-cir cc-tt act" id="fde-rount-click">
+										<span class="cc-tt-hint">Click to change the shape<br>to circle</span>
+									</div>
+								</div>
+								<div class="shape-size">
+									<div class="size-button size-3 vcc-cam-zoom3"></div>
+									<div class="size-button size-2 vcc-cam-zoom2"></div>
+									<div class="size-button size-1 vcc-cam-zoom1 active"></div>
+								</div>
+							</div>
+
+
+
+							<!-- <div class="cc-camera-size-tooltip">
+								<div class="size-button size-1 vcc-cam-zoom1 active"></div>
+								<div class="size-button size-2 vcc-cam-zoom2"></div>
+								<div class="size-button size-3 vcc-cam-zoom3"></div>
+							</div> -->
+
+							<!-- <span class="cc-ffcam-close size-1"></span> -->
+							<div class="cc-tt">
+								<span class="cc-flipcamera" id="vcc-flip-camera"></span>
+								<span class="cc-tt-hint hint-camera" style="height:14px!important;">Mirror Camera</span>
+							</div>
+							<!-- <span class="cc-bg-setting" id="fde-bg-blur-click"></span> -->
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody></table>
+	</div>
+</div>
+<!------------Tools Start---------------->
+<section class="cc-tools-container" valign="bottom" id="fde-action-menu-items" style="display: none;top: 144px; left: 0px;">
+	<div style="position: relative;bottom: 0px; left:-10px; top:10px; display: flex;">
+		<img id="drag-elem-id" class="cc-drag" src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/drag.png">
+		<div class="cc-tools">
+			<div>
+				<strong class="recording-duration" id="vcc-timer-elem" style="display: none;">0:00:00</strong>
+			</div>
+			<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-pause-ico.png" id="vcc-pause-btn" style="display: none;" title="Pause Recording">
+			<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-play-ico.png" id="vcc-resume-btn" style="display: none;" title="Resume Recording">
+			<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-play-ico.png" id="vcc-init-btn" title="Start Recording" style="display: none;">
+			<span class="pos-rel" style="height:36px;">
+			<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-close-ico.png" id="open-cancel-option" title="Cancel Recording">
+				<div class="cls-rec" id="cancel-option-list" style="display: none;">
+					<ul>
+						<li id="vcc-cancel-btn">Cancel recording</li>
+						<li id="fde-restart">Restart recording</li>
+					</ul>
+				</div>
+			</span>
+
+			<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-finish-rc.png" id="vcc-stop-btn" style="display: none;" title="Finish Recording">
+			<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-camera-on-ico.png" id="vcc-cam-setting-btn" title="Camera ON">
+			<img src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-camera-off-ico.png" id="vcc-cam-hide-setting-btn" title="Camera OFF">
+			<div id="vcc-draw-elem" style="display: none;">
+				<div id="drawing-tools-open">
+					<div class="pentool">Tools</div>
+				</div>
+				<div id="drawing-tools-list" style="display: none;">
+					<img class="extra-tools drawingToolHideShow" id="vcc-draw-pen" src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-pen-ico.png" title="Pen Tool">
+					<img class="extra-tools drawingToolHideShow" id="vcc-draw-eraser" src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-eraser-ico.png" title="Eraser">
+					<img class="extra-tools drawingToolHideShow" id="vcc-clear-draw" src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-clear-pen.png" title="Clear Paint">
+					<img class="extra-tools drawingToolHideShow" id="vcc-cursor-focus" src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-focus-ico.png" title="Mouse Pointer Spotlight">
+					<img class="extra-tools drawingToolHideShow" id="vcc-draw-highlight" src="chrome-extension://hfadalcgppcbffdnichplalnmhjbabbm/images/icons/flu-mouse.png" title="Mouse Click Highlighter">
+				</div>
+
+				<div id="drawing-tools-close" style="display: none;">
+					<div class="pentool-cls"></div>
+				</div>
+			</div>
+		</div>
+		<div class="cc-tools ccpen-col" id="cc-pen-editor" style="display: none;">
+			<div class="brush-tools">
+				<div class="pen-color" id="pen-color-id">
+					<ul style="padding-left:5px; margin:0">
+						<!-- First one is default if changed please change it in ElectronConstant as well. -->
+						<li data-color="#7fffd4" title="Aqua Menthe"></li>
+						<li data-color="#8a2be2" title="Proton Purple"></li>
+						<li data-color="#ff4500" title="Orange Red"></li>
+						<li data-color="#008000" title="Office Green"></li>
+						<li data-color="#0000ff" title="Just Blue"></li>
+						<li data-color="#ffc0cb" title="Blush Pink"></li>
+						<li data-color="#dfff00" title="Chartreuse Yellow"></li>
+						<li data-color="#fff9e3" title="Cosmic Latte"></li>
+						<li data-color="#000" title="All Black"></li>
+						<li data-color="#fff" title="Simple White"></li>
+					</ul>
+				</div>
+				<div class="brush-size-wrapper">
+					<span id="pen-size-text" class="cc-pensize">5px</span>
+					<div class="brush-size">
+						<input id="pen-size" type="range" orient="vertical" min="5" max="20" value="5">
+					</div>
+					<div id="current-pen-size" class="pen-size"></div>
+				</div>
+			</div>
+			<div class="cc-close" id="cc-editor-close">close</div>
+		</div>
+	</div>
+</section>
+<!------------Tools Ends----------------->
+
+<!--End-->
+
+<!--Message popup --->
+<div id="fde-popup-message"></div>
+<div id="fde-common-popup-message"></div>
+<!---End-->
+
+<!-- ---------------------------------------------------------------------------------- --></div></html>
