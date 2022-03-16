@@ -25,6 +25,8 @@
   
   });
 
+
+
 const arrButtons = document.getElementsByClassName('arr-button')
 const arrModal = document.getElementById('arr-modal')
 const alsButtons = document.getElementsByClassName('als-button')
@@ -86,25 +88,37 @@ for (let buttons of dexButtons) {
     document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol"
   }
 
-
-
-let newPatient = document.getElementById("newPatient")
 let currentPatient = document.getElementById("currentPatient")
   let childInput = document.getElementById("childInput")
   if (weight>0) {
-childInput.classList.add("is-hidden")
+childInput.classList.toggle("is-hidden")
 currentPatient.classList.remove("is-hidden")
-currentPatient.classList.add("is-hidden-touch")
+currentPatient.classList.add("is-hidden-mobile")
+document.getElementById("newPatientPhone").classList.remove("is-hidden")
+document.getElementById("newPatientPhone").classList.add("is-hidden-tablet")
+
   }
  }
+
+ let newPatient = document.getElementById("newPatient")
 newPatient.addEventListener('click', () => {
   childInput.classList.remove("is-hidden")
   currentPatient.classList.add("is-hidden")
-  currentPatient.classList.remove("is-hidden-touch")
+  
 }
 
 )
 
+let newPatientPhone = document.getElementById("newPatientPhone")
+newPatientPhone.addEventListener('click', () =>  {
+newPatientPhone.classList.add("is-hidden");
+childInput.classList.remove("is-hidden");
+
+
+}
+
+
+)
 
 
 

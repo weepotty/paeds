@@ -203,8 +203,8 @@ app.get("/pdfs/ppt-nov-21.pdf", function(req, res){
 
 
 app.get("/", function (req, res) {
-  let weight = (parseInt(child[child.length - 1].weight))
-  let age = (parseInt(child[child.length-1].age))
+  let weight = (parseFloat(child[child.length - 1].weight))
+  let age = (parseFloat(child[child.length-1].age))
  
 
   res.render("home", {child, antibiotics, premeds, inductionDrugs, emergencyDrugs, antiemetics, painkillers, title: titles.cheatsheet, weight, age})
@@ -216,13 +216,12 @@ app.post("/", function(req, res){
   // const weight = req.body.weight;
   // const age = req.body.age
   child.push({weight,age});
-  let weightNum=parseFloat(weight);
   
 
 //drug calculator code
 
   antibiotics.forEach(abx => {
-    abx['amount'] = abx['dose'] * weightNum
+    abx['amount'] = abx['dose'] * weight
     if (abx['amount'] > abx['max']) {
       abx['amount'] = abx['max']
     } else {
@@ -231,7 +230,7 @@ app.post("/", function(req, res){
   });
   
   premeds.forEach(premed => {
-    premed['amount'] = (premed['dose'] * weightNum)
+    premed['amount'] = (premed['dose'] * weight)
 
   
     if (premed['amount'] > premed['max']) {
@@ -242,7 +241,7 @@ app.post("/", function(req, res){
   });
 
   emergencyDrugs.forEach(edrug => {
-    edrug['amount'] = parseFloat((edrug['dose'] * weightNum).toFixed(2));
+    edrug['amount'] = parseFloat((edrug['dose'] * weight).toFixed(2));
     edrug['volume'] = parseFloat((edrug['amount'] / edrug['concentration']).toFixed(2));
     edrug['maxvolume'] = parseFloat(Math.floor(edrug['max']/edrug['concentration']));
 
@@ -252,13 +251,13 @@ app.post("/", function(req, res){
     } 
     
     else  {
-      edrug['amount'] = edrug['dose'] * weightNum
+      edrug['amount'] = edrug['dose'] * weight
       edrug['volume'] = edrug['volume']
     }
   });
 
   inductionDrugs.forEach(idrug => {
-    idrug['amount'] = parseFloat((idrug['dose'] * weightNum).toFixed(2));
+    idrug['amount'] = parseFloat((idrug['dose'] * weight).toFixed(2));
     idrug['volume'] = parseFloat((idrug['amount'] / idrug['concentration']).toFixed(2));
     idrug['maxvolume'] = Math.floor(idrug['max']/idrug['concentration']);
 
@@ -276,7 +275,7 @@ app.post("/", function(req, res){
 });
 
 antiemetics.forEach(antiemetic => {
-  antiemetic['amount'] = parseFloat((antiemetic['dose'] * weightNum).toFixed(2));
+  antiemetic['amount'] = parseFloat((antiemetic['dose'] * weight).toFixed(2));
   antiemetic['volume'] = parseFloat((antiemetic['amount'] / antiemetic['concentration']).toFixed(2));
   antiemetic['maxvolume'] = Math.floor(antiemetic['max']/antiemetic['concentration']);
 
@@ -291,12 +290,12 @@ antiemetics.forEach(antiemetic => {
 });
 
 painkillers.forEach(painkiller => {
-  painkiller['amount'] = parseFloat((painkiller['dose'] * weightNum).toFixed(2));
+  painkiller['amount'] = parseFloat((painkiller['dose'] * weight).toFixed(2));
   painkiller['volume'] = parseFloat((painkiller['amount'] / painkiller['concentration']).toFixed(2));
   painkiller['maxvolume'] = Math.floor(painkiller['max']/painkiller['concentration']);
  
 
-if (weightNum < 10) {
+if (weight < 10) {
   painkiller['amount'] = painkiller['amount']/2;
 }
 
@@ -304,7 +303,7 @@ else if (painkiller['amount'] > painkiller['max']) {
   painkiller['amount'] = painkiller['max']
   painkiller['volume'] = painkiller['maxvolume']
 
-} else if (weightNum > 50) {
+} else if (weight > 50) {
   painkiller['amount'] = painkiller['max'] 
   painkiller['volume']=painkiller['maxvolume']
 }
@@ -365,6 +364,11 @@ app.get("/airway", (req, res) => {
   let weight = (parseInt(child[child.length - 1].weight))
   let age = (parseInt(child[child.length-1].age))
   
+  const observations = [
+    {name: "RR", value: parseFloat(24-age/2), units: "breaths/min"},
+    {name: "Tidal volume (6ml/kg)", value: 6*weight, units: "ml"}
+  ]
+
   const airwayDevices = [
     {name: "ETT microcuffed", formula: age/4+4, units:" "},
     {name: "Tube length, oral", formula: age/2+12, units:"cm"},
@@ -419,7 +423,10 @@ if (isNaN(twoThirds)) {
 } else {
   twoThirds=parseFloat(twoThirds.toFixed(1))
 }
-  res.render("airway", {airwayDevices, child, weight, maintenanceFluid, twoThirds, age, title: titles.cheatsheet});
+
+
+
+  res.render("airway", {airwayDevices, observations, child, weight, maintenanceFluid, twoThirds, age, title: titles.cheatsheet});
 });
 
 app.get("/fluids", (req, res) => {

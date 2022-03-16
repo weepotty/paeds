@@ -6,19 +6,21 @@
 // Set your brand colors
 $green: #b4cfb0;
 $light-green: #c4e2bf;
-$dark-green: #94b49f;
+$darker-green: #94b49f;
 $grey-blue: #789395;
 $beige: #e5e3c9;
 $beige-lighter: #f0efdf;
 $pink: rgb(218, 76, 100);
+$darkest-green: #4a6353;
 
 // Update Bulma's global variables
 $family-sans-serif: "Nunito", sans-serif;
 $grey-dark: $grey-blue;
 $grey-light: $beige;
 $primary: $light-green;
-$link: $dark-green;
+$link: $darker-green;
 $danger: $pink;
+$warning: $darkest-green;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 

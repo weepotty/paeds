@@ -47,10 +47,28 @@
           
         </div>
         <div class="box">
-          <p>Respiratory Rate</p>
-          <p>Tidal Volume</p>
-          <p></p>
-          
+          <table class="table is-size-7 is-fullwidth has-text-left">
+            <tr>
+               <th></th>
+               <th>Value</th>
+               <th>Units</th>
+            </tr>
+        
+            
+            <% for (let o of observations) { %>
+              <tr>
+               <td><%= o.name %></td>
+               <td> <%= o.value %> </td>
+               <td> <%= o.units %></td>
+               
+               
+               <% } %>
+               
+           
+               <td> </td>
+            </tr>     
+
+         </table>
        
         
         
@@ -76,7 +94,7 @@
                <td>ml/h</td>
                </tr>
                <tr>
-                <td>2/3 maintenance</td>
+                <td>2/3 Maintenance rate</td>
                 <td> <%= twoThirds %> </td>
                 <td>ml/h</td>
                 </tr>
