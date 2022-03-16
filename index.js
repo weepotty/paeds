@@ -50,7 +50,7 @@ const painkillers = [
 
 const titles = {
   cheatsheet: "Cheatsheet",
-  protocols: "Protocols",
+  guidelines: "Guidelines",
   induction: "Induction",
   contact: "Contact"
 }
@@ -474,16 +474,16 @@ app.get("/fluids", (req, res) => {
 
 
 app.get("/pain", (req, res) => {
-  res.render("pain", {title: titles.protocols});
+  res.render("pain", {title: titles.guidelines});
 });
 
 app.get("/emergencies", (req, res) => {
-  res.render("emergencies", {title: titles.protocols});
+  res.render("emergencies", {title: titles.guidelines});
 });
 
 
 app.get("/perioperative", (req, res) => {
-  res.render("perioperative", {title: titles.protocols});
+  res.render("perioperative", {title: titles.guidelines});
 });
 
 app.get("/starterpack", (req, res) => {

@@ -1,21 +1,21 @@
 <div class="box" id="childInput">
   <form action="<%= currentPage %> " method="POST">
-  <table class="table is-size-7 has-text-centered is-fullwidth">
+  <table class="table has-text-centered is-fullwidth">
 
 
       <tr>
-       <td class="is-vcentered">Weight</td>
-    <td><input id="weight" name="weight" class="input is-success" type="number" required min="0" max="100" step="0.1" value=""></td>
-    <td class="is-vcentered">kg</td>
+       <td class="is-vcentered has-text-right">Weight</td>
+    <td class="px-0"><input id="weight" name="weight" class="input is-success" type="number" required min="0" max="100" step="0.1" value=""></td>
+    <td class="is-vcentered pl-1 has-text-left">kg</td>
     <td class="is-vcentered"></td>
     <td class="is-vcentered"></td>
       </tr>
      <tr>
-      <td class="is-vcentered">Age</td>
-      <td><input id="age" name="age" class="input is-success" required type="number" min="0" max="16"></td>
-      <td class="is-vcentered">years</td>
-      <td class="is-vcentered"><input id="months" name="months" class="input is-success "  type="number" min="0" max="11"></td>
-      <td class="is-vcentered">months</td>
+      <td class="is-vcentered has-text-right">Age</td>
+      <td class="px-0"><input id="age" name="age" class="input is-success" required type="number" min="0" max="16"></td>
+      <td class="is-vcentered pl-1 has-text-left">years</td>
+      <td class="is-vcentered px-0"><input id="months" name="months" class="input is-success "  type="number" min="0" max="11"></td>
+      <td class="is-vcentered pl-1 has-text-left">months</td>
    
      </tr>
  </table>
