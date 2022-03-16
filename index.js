@@ -340,6 +340,7 @@ else if (painkiller['amount'] > painkiller['max']) {
 app.get("/wetflag", (req, res) => {
 let weight = (parseInt(child[child.length - 1].weight))
 let age = (parseInt(child[child.length-1].age))
+let months = (parseInt(child[child.length-1].months))
 const parameters = [
   {name: "Weight", formula:(age+4)*2, units: "kg"},
   {name: "Energy", formula:weight * 4, units: "J"}, 
@@ -364,7 +365,7 @@ parameters.forEach (parameter => {
 }
 } )
 let currentPage = req.url
-  res.render("wetflag", {currentPage, child, title: titles.cheatsheet, age, weight, months, parameters});
+  res.render("wetflag", {currentPage, child, title: titles.cheatsheet, age, weight,months,parameters});
 });
 
 app.post("/airway", (req, res) => {
