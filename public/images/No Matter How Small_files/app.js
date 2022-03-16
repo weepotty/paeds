@@ -72,7 +72,7 @@ for (let buttons of dexButtons) {
 
  function getWeight (){
    let weight = document.getElementById("weight").innerText;
-   let months=document.getElementById("monthsBanner").innerText
+  
   
    if (weight <5 ) {
    document.getElementById("analgesia-instructions").innerHTML = "weight<5kg: discuss NCA morphine prescription with consultant"
@@ -86,7 +86,7 @@ for (let buttons of dexButtons) {
     document.getElementById("over50").classList.toggle('is-hidden')
 
   } else {
-    document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol"
+    document.getElementById("analgesia-instructions").innerHTML = "enter weight to get NCA/PCA morphine protocol"
   }
 // let age = document.getElementById("age").innerText
 //   let months = document.getElementById("ageMonths")

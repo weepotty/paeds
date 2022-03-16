@@ -1,25 +1,14 @@
 
 
 
-<% if (isNaN(weight) ){ %>
-  <% weight = "..." %>
-<% } else { %>
-  <% weight = weight %>
-<% }; %>
 
-<% if (isNaN(age) ){ %>
-  <% age = "..." %>
-<% } else { %>
-  <% age = age %>
-<% }; %>
-<% if (isNaN(months) ){ %>
-  <% months = "..." %>
-<% } else { %>
-  <% months = months %>
-<% }; %>
+<% if (isNaN(weight)) { %>
 
+  <div class="is-size-6 has-text-centered has-text-white has-background-grey-dark" style="position: sticky; z-index:1; top:50px" id="childBanner">
+    enter weight and age </div>
 
- <div class="is-hidden is-size-6 has-text-centered has-text-white has-background-grey-dark" style="position: sticky; z-index:1; top:50px" id="childBanner">
+<% } else { %> 
+ <div class="is-size-6 has-text-centered has-text-white has-background-grey-dark" style="position: sticky; z-index:1; top:50px" id="childBanner">
   for a child of <span class="has-text-info has-text-weight-bold is-size-6" id="weight"><%= weight %></span> kg, aged <span class="has-text-info has-text-weight-bold is-size-6" id="age"><%=age %></span>y
   
   
@@ -27,5 +16,5 @@
     <span class="has-text-info has-text-weight-bold is-size-6" id="monthsBannerText"><%= months %></span>m</span>
   </div> 
 
-
+<% } %>
  

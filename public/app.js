@@ -94,13 +94,13 @@ if (months > 0) {
     document.getElementById("over50").classList.toggle('is-hidden')
 
   } else {
-    document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol"
+    document.getElementById("analgesia-instructions").innerHTML = "enter weight to get NCA/PCA morphine protocol"
   }
 
 
 let currentPatient = document.getElementById("currentPatient")
   let childInput = document.getElementById("childInput")
-  let childBanner = document.getElementById("childBanner")
+  // let childBanner = document.getElementById("childBanner")
 
   if (weight>0) {
 childInput.classList.add("is-hidden")
@@ -108,14 +108,23 @@ currentPatient.classList.remove("is-hidden")
 currentPatient.classList.add("is-hidden-mobile")
 document.getElementById("newPatientPhone").classList.remove("is-hidden")
 document.getElementById("newPatientPhone").classList.add("is-hidden-tablet")
-childBanner.classList.remove("is-hidden");
-childBanner.classList.add("is-hidden-tablet");
+// childBanner.classList.remove("is-hidden");
+// childBanner.classList.add("is-hidden-tablet");
 
   }
  }
 
+// const airwayFluidsTab = document.getElementById("airwayFluidsTab")
+// airwayFluidsTab.addEventListener('click', showBanner())
+
+// function showBanner () {
+//   document.getElementById("childBanner").classList.remove("is-hidden")
+//   document.getElementById("childBanner").classList.add("is-hidden-tablet");
+// }
+ 
  let newPatient = document.getElementById("newPatient")
 newPatient.addEventListener('click', () => {
+  
   childInput.classList.remove("is-hidden")
   currentPatient.classList.add("is-hidden")
   
