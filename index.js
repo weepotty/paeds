@@ -344,7 +344,7 @@ let months = (parseInt(child[child.length-1].months))
 const parameters = [
   {name: "Weight", formula:(age+4)*2, units: "kg"},
   {name: "Energy", formula:weight * 4, units: "J"}, 
-  {name: "Tube size (uncuffed)", formula: age/4+4, units: " "},
+  {name: "Tube size (uncuffed)", formula: age/4+4, units: "mm (ID)"},
   {name: "Tube length (oral)", formula: age/2+12, units: "cm"},
   {name: "Tube length (nasal)", formula: age/2+15, units: "cm"},
   {name: "Fluid (medical)", formula: 20*weight,units: "ml"},
@@ -396,6 +396,15 @@ app.get("/airway", (req, res) => {
   
 
 
+  observations.forEach(observation => {
+  if (isNaN(observation['value'])) {
+    observation['value']=" "
+} else {
+  observation['value']=observation['value']
+}
+  })
+
+
   switch (true) {
     case (weight < 5): airwayDevices[3].formula = 1
     break
@@ -444,13 +453,13 @@ switch (true) {
   case (20 < weight): maintenanceFluid = 60 + (weight-20)
 break;
 
-default: maintenanceFluid="please re-enter weight"
+default: maintenanceFluid="enter weight"
 }
 
 
 let twoThirds = parseFloat((maintenanceFluid/3*2).toFixed(1))
 if (isNaN(twoThirds)) {
-  twoThirds = "please re-enter weight"
+  twoThirds = "enter weight"
 } else {
   twoThirds=parseFloat(twoThirds.toFixed(1))
 }
