@@ -23,6 +23,7 @@
       });
     }
   
+
   });
 
 
@@ -96,6 +97,7 @@ currentPatient.classList.remove("is-hidden")
 currentPatient.classList.add("is-hidden-mobile")
 document.getElementById("newPatientPhone").classList.remove("is-hidden")
 document.getElementById("newPatientPhone").classList.add("is-hidden-tablet")
+document.getElementById("childBanner").classList.remove("is-hidden")
 
   }
  }

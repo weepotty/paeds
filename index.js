@@ -370,7 +370,7 @@ app.get("/airway", (req, res) => {
   ]
 
   const airwayDevices = [
-    {name: "ETT microcuffed", formula: age/4+4, units:" "},
+    {name: "ETT microcuffed", formula: age/4+3.5, units:" "},
     {name: "Tube length, oral", formula: age/2+12, units:"cm"},
     {name: "Tube length, nasal", formula: age/2+15, units:"cm"},
     {name: "LMA size"}
