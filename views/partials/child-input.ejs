@@ -1,42 +1,87 @@
 <div class="box" id="childInput">
   <form action="<%= currentPage %> " method="POST">
-  <table class="table has-text-centered is-fullwidth">
-
-
+    <table class="table has-text-centered is-fullwidth">
       <tr>
-       <td class="is-vcentered has-text-right">Weight</td>
-    <td class="px-0"><input id="weight" name="weight" class="input is-success" type="number" required min="0" max="100" step="0.1" value=""></td>
-    <td class="is-vcentered pl-1 has-text-left">kg</td>
-    <td class="is-vcentered"></td>
-    <td class="is-vcentered"></td>
+        <td class="is-vcentered has-text-right">Weight</td>
+        <td class="px-0">
+          <input
+            id="weight"
+            name="weight"
+            class="input is-success"
+            type="number"
+            required
+            min="0"
+            max="100"
+            step="0.1"
+            value=""
+          />
+        </td>
+        <td class="is-vcentered pl-1 has-text-left">kg</td>
+        <td class="is-vcentered"></td>
+        <td class="is-vcentered"></td>
       </tr>
-     <tr>
-      <td class="is-vcentered has-text-right">Age</td>
-      <td class="px-0"><input id="age" name="age" class="input is-success" required type="number" min="0" max="16"></td>
-      <td class="is-vcentered pl-1 has-text-left">years</td>
-      <td class="is-vcentered px-0"><input id="months" name="months" class="input is-success "  type="number" min="0" max="11"></td>
-      <td class="is-vcentered pl-1 has-text-left">months</td>
-   
-     </tr>
- </table>
+      <tr>
+        <td class="is-vcentered has-text-right">Age</td>
+        <td class="px-0">
+          <input
+            id="age"
+            name="age"
+            class="input is-success"
+            required
+            type="number"
+            min="0"
+            max="16"
+          />
+        </td>
+        <td class="is-vcentered pl-1 has-text-left">years</td>
+        <td class="is-vcentered px-0">
+          <input
+            id="months"
+            name="months"
+            class="input is-success"
+            type="number"
+            min="0"
+            max="11"
+          />
+        </td>
+        <td class="is-vcentered pl-1 has-text-left">months</td>
+      </tr>
+    </table>
 
-   
- <div class="has-text-right"><button class="button is-primary has is-small" id="submit" type="submit">Submit</button></div></form>
+    <div class="has-text-right">
+      <button class="button is-primary" id="submit" type="submit">
+        Submit
+      </button>
+    </div>
+  </form>
 </div>
-<%- include ("jump-to") -%> 
 
 <!-- currentpatient -->
 <div class="box has-text-dark is-size-7 is-hidden" id="currentPatient">
-<div class="column">
-<p class="has-text-weight-bold is-size-6">Current patient</p>
-<p>weight:<span class="has-text-danger has-text-weight-bold"> <%= weight %></span> kg</p>
-<p>age: <span class="has-text-danger has-text-weight-bold"><%= age %></span> years</p>
-</div>
-<div class="column pt-0">
-<div>
-<button id="newPatient" class="button is-primary is-small">new patient</button>
-</div>
-</div>
+  <div class="column">
+    <p class="has-text-weight-bold is-size-6">Current patient</p>
+    <p>
+      weight:<span class="has-text-danger has-text-weight-bold">
+        <%= weight %></span
+      >
+      kg
+    </p>
+    <p>
+      age:
+      <span class="has-text-danger has-text-weight-bold"><%= age %></span> years
+    </p>
+  </div>
+  <div class="column pt-0">
+    <div>
+      <button id="newPatient" class="button is-primary is-small">
+        new patient
+      </button>
+    </div>
+  </div>
 </div>
 
-<div class="block"><button id="newPatientPhone" class="button is-small is-rounded is-white is-hidden">New patient</button></div>
+<div class="block">
+  <button id="newPatientPhone" class="button is-white is-hidden">
+    New patient
+  </button>
+</div>

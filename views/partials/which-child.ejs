@@ -1,20 +1,35 @@
-
-
-
-
 <% if (isNaN(weight)) { %>
 
-  <div class="is-size-6 has-text-centered has-text-white has-background-grey-dark" style="position: sticky; z-index:1; top:50px" id="childBanner">
-    enter weight & age </div>
+<div
+  class="is-size-6 has-text-centered has-text-white has-background-grey-dark"
+  style="position: sticky; z-index: 1; top: 50px"
+  id="childBanner"
+>
+  enter weight & age
+</div>
 
-<% } else { %> 
- <div class="is-size-6 has-text-centered has-text-white has-background-grey-dark" style="position: sticky; z-index:1; top:50px" id="childBanner">
-  for a child of <span class="has-text-info has-text-weight-bold is-size-6" id="weight"><%= weight %></span> kg, aged <span class="has-text-info has-text-weight-bold is-size-6" id="age"><%=age %></span>y
-  
-  
+<% } else { %>
+<div
+  class="is-size-5 has-text-centered has-text-white has-background-grey-dark"
+  style="position: sticky; z-index: 1; top: 50px"
+  id="childBanner"
+>
+  for a child of
+  <span class="has-text-info has-text-weight-bold is-size-5" id="weight"
+    ><%= weight %></span
+  >
+  kg, aged
+  <span class="has-text-info has-text-weight-bold is-size-5" id="age"
+    ><%=age %></span
+  >y
+
   <span class="is-hidden" id="monthsBanner">
-    <span class="has-text-info has-text-weight-bold is-size-6" id="monthsBannerText"><%= months %></span>m</span>
-  </div> 
+    <span
+      class="has-text-info has-text-weight-bold is-size-5"
+      id="monthsBannerText"
+      ><%= months %></span
+    >m</span
+  >
+</div>
 
 <% } %>
- 
