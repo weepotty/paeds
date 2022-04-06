@@ -9,7 +9,7 @@ const child = [{ weight: "?", age: "?", months: "?" }];
 const premeds = [
   { name: "Midazolam (buccal)", dose: 0.3, units: "mg", max: 10 },
   { name: "Midazolam (oral)", dose: 0.5, units: "mg", max: 20 },
-  { name: "Dexmedetomidine", dose: 2, units: "mcg" },
+  { name: "Dexmedetomidine (intranasal)", dose: 2, units: "mcg" },
 ];
 
 const inductionDrugs = [
