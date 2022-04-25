@@ -1,7 +1,7 @@
 const express = require("express");
 const PORT = process.env.PORT || 5000;
-const bodyParser = require("body-parser");
-
+const nodemailer = require('nodemailer')
+const bodyParser=require('body-parser')
 const app = express();
 
 const child = [{ weight: "?", age: "?", months: "?" }];
@@ -74,6 +74,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
+app.use(express.json())
 
 // pdf links
 app.get("/pdfs/cardiac-arr.pdf", function (req, res) {
@@ -535,9 +536,33 @@ app.get("/contact", (req, res) => {
 });
 
 app.post("/contact", function (req, res) {
-  res.send("thank you, your form has been submitted");
+  console.log(req.body)
+  const transporter = nodemailer.createTransport ({
+    service: 'gmail',
+    auth: {
+      user: 'paedsinduction@gmail.com',
+      pass: 'paedsinduction22'
+    }
+  })
 
-  res.redirect("/");
+  const mailOptions = {
+    from: req.body.email,
+    to: 'paedsinduction@gmail.com',
+    subject: 'paeds induction',
+    text: req.body.message
+
+  }
+  transporter.sendMail(mailOptions, (error, info)=>{
+    if(error) {
+      console.log(error)
+      res.send('error')
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.send('success')
+    }
+  
+  })
+  
 });
 
 app.get("/formulae", (req, res) => {
