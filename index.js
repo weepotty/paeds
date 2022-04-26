@@ -1,16 +1,21 @@
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config()};
+
 const express = require("express");
 const PORT = process.env.PORT || 5000;
 const nodemailer = require('nodemailer')
 const bodyParser=require('body-parser')
 const app = express();
-const User = require ('./models/user')
-const mongoose = require("mongoose");
+// const User = require ('./models/user')
+// const mongoose = require("mongoose");
 const {google} = require('googleapis')
 const OAuth2 = google.auth.OAuth2;
 const config = require('./config.js')
 const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
-const bcrypt = require("bcryptjs");
+// const bcrypt = require("bcryptjs");
 const session = require ('express-session')
+const inductionPwd = process.env.PASSWORD
+
 
 OAuth2_client.setCredentials({refresh_token:config.refreshToken})
 
@@ -81,15 +86,16 @@ const titles = {
 };
 
 
-async function main() {
-  await mongoose.connect("mongodb://localhost:27017/authDemo");
-}
+// async function main() {
+//   // await mongoose.connect("mongodb://localhost:27017/authDemo");
+//   await mongoose.connect(dbUrl)
+// }
 
-main().catch((err) => console.log(err, "MONGOOSE ERROR"));
+// main().catch((err) => console.log(err, "MONGOOSE ERROR"));
 
-main().then(() => {
-  console.log("MONGO CONNECTION OPEN");
-});
+// main().then(() => {
+//   console.log("MONGO CONNECTION OPEN");
+// });
 
 
 
@@ -103,14 +109,34 @@ resave: false,
     saveUninitialized: true
 }))
 
-const requireLogin = (req, res, next) => {
+// const requireLogin = (req, res, next) => {
 
-if (!req.session.user_id) {
-  return res.redirect('/login')
+// if (!req.session.user_id) {
+//   return res.redirect('/login')
+// }
+// next();
+// }
+
+const checkPassword = (req, res, next) => {
+  const {password} = req.body;
+if (password === inductionPwd) {
+next()
 }
-next();
+else {
+  res.redirect('/login')
 }
 
+}
+const checkPassword2 = (req, res, next) => {
+  const {password} = req.body;
+if (password === inductionPwd) {
+next()
+}
+else {
+  res.redirect('/login2')
+}
+
+}
 
 // pdf links
 app.get("/pdfs/cardiac-arr.pdf", function (req, res) {
@@ -269,18 +295,47 @@ app.get('/login', (req, res) => {
   res.render('login', { title: titles.contact })
 })
 
-app.post('/login', async (req, res) => {
+app.get('/login2', (req, res) => {
+  res.render('login2', { title: titles.contact })
+})
+// app.post('/login', async (req, res) => {
+//   const {password} = req.body;
+//   const user = await User.findOne();
+//   const validPassword = await bcrypt.compare(password, user.password)
+//   if (validPassword) {
+//     req.session.user_id = user._id;
+//     res.redirect('/starterpack')
+//   }
+//   else {
+//     res.send('wrong password please try again')
+//   }
+// })
+
+
+app.post('/login', (req, res) => {
   const {password} = req.body;
-  const user = await User.findOne();
-  const validPassword = await bcrypt.compare(password, user.password)
-  if (validPassword) {
-    req.session.user_id = user._id;
-    res.redirect('/starterpack')
+
+  if (password === inductionPwd) {
+
+    res.render('starterpack', { title: titles.induction })
   }
   else {
     res.send('wrong password please try again')
   }
 })
+
+app.post('/login2', (req, res) => {
+  const {password} = req.body;
+
+  if (password === inductionPwd) {
+
+    res.render('powerpoints', { title: titles.induction })
+  }
+  else {
+    res.send('wrong password please try again')
+  }
+})
+
 
 app.get("/", function (req, res) {
   let weight = parseFloat(child[child.length - 1].weight);
@@ -594,15 +649,16 @@ app.get("/perioperative", (req, res) => {
   res.render("perioperative", { title: titles.guidelines });
 });
 
-app.get("/starterpack", requireLogin, (req, res) => {
+app.get("/starterpack", checkPassword, (req, res) => {
   res.render("starterpack", { title: titles.induction });
 });
 
 
-app.get("/powerpoints", requireLogin, (req, res) => {
+app.get("/powerpoints", checkPassword2, (req, res) => {
 
   res.render("powerpoints", { title: titles.induction });
 });
+
 
 app.get("/contact", (req, res) => {
   res.render("contact", { title: titles.contact });
@@ -654,3 +710,4 @@ app.get("/formulae", (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+

@@ -1,0 +1,38 @@
+<%- include ("partials/header") -%>
+
+<div class="notification is-primary">
+  <!-- column 1 -->
+  <div class="box">
+    <div class="container my-5 mt-5 mx-5 px-5">
+      <form action="/login2" method="POST">
+      
+      
+        <div class="field">
+          <label
+            for="password"
+            class="label is-size-5 has-text-weight-light"
+          ></label>
+          <input
+            name="password"
+            id="password"
+            type="password"
+    
+            class="input"
+            placeholder="Enter password to view these documents"
+            required
+          ></input>
+        </div>
+
+        <div class="is-vcentered columns">
+          <div class="column is-one-fifth">
+            <button type="submit" id="contactButton" class="button is-success is-small">
+              Submit
+            </button>
+          </div>
+         
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include ("partials/footer-protocols") -%>
