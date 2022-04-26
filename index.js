@@ -3,11 +3,14 @@ const PORT = process.env.PORT || 5000;
 const nodemailer = require('nodemailer')
 const bodyParser=require('body-parser')
 const app = express();
+const User = require ('./models/user')
+const mongoose = require("mongoose");
 const {google} = require('googleapis')
 const OAuth2 = google.auth.OAuth2;
 const config = require('./config.js')
 const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
-
+const bcrypt = require("bcrypt");
+const session = require ('express-session')
 
 OAuth2_client.setCredentials({refresh_token:config.refreshToken})
 
@@ -78,7 +81,15 @@ const titles = {
 };
 
 
+async function main() {
+  await mongoose.connect("mongodb://localhost:27017/authDemo");
+}
 
+main().catch((err) => console.log(err, "MONGOOSE ERROR"));
+
+main().then(() => {
+  console.log("MONGO CONNECTION OPEN");
+});
 
 
 
@@ -87,6 +98,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 app.use(express.json())
+app.use(session({secret:'notagoodsecret',
+resave: false,
+    saveUninitialized: true
+}))
+
+const requireLogin = (req, res, next) => {
+
+if (!req.session.user_id) {
+  return res.redirect('/login')
+}
+next();
+}
+
 
 // pdf links
 app.get("/pdfs/cardiac-arr.pdf", function (req, res) {
@@ -222,6 +246,41 @@ app.get("/pdfs/ppt-nov-21.pdf", function (req, res) {
     res.send(data);
   });
 });
+
+// creating password
+
+
+// app.get('/register', (req, res) => {
+// res.render('register')
+// })
+
+// app.post("/register", async (req, res) => {
+
+//   const {password} = req.body;
+//   const hash = await bcrypt.hash(password, 12)
+//   const user = new User({password:hash})
+//   await user.save()
+// req.session.user_id = user._id;
+//   res.redirect('/')
+// })
+
+
+app.get('/login', (req, res) => {
+  res.render('login', { title: titles.contact })
+})
+
+app.post('/login', async (req, res) => {
+  const {password} = req.body;
+  const user = await User.findOne();
+  const validPassword = await bcrypt.compare(password, user.password)
+  if (validPassword) {
+    req.session.user_id = user._id;
+    res.redirect('/starterpack')
+  }
+  else {
+    res.send('wrong password please try again')
+  }
+})
 
 app.get("/", function (req, res) {
   let weight = parseFloat(child[child.length - 1].weight);
@@ -535,11 +594,13 @@ app.get("/perioperative", (req, res) => {
   res.render("perioperative", { title: titles.guidelines });
 });
 
-app.get("/starterpack", (req, res) => {
+app.get("/starterpack", requireLogin, (req, res) => {
   res.render("starterpack", { title: titles.induction });
 });
 
-app.get("/powerpoints", (req, res) => {
+
+app.get("/powerpoints", requireLogin, (req, res) => {
+
   res.render("powerpoints", { title: titles.induction });
 });
 

@@ -12,11 +12,14 @@
   "author": "shona chan",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "bulma": "^0.9.3",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
+    "express-session": "^1.17.2",
     "googleapis": "^100.0.0",
+    "mongoose": "^6.3.1",
     "node-sass": "^7.0.1",
     "nodemailer": "^6.7.3"
   }
