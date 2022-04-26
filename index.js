@@ -3,6 +3,13 @@ const PORT = process.env.PORT || 5000;
 const nodemailer = require('nodemailer')
 const bodyParser=require('body-parser')
 const app = express();
+const {google} = require('googleapis')
+const OAuth2 = google.auth.OAuth2;
+const config = require('./config.js')
+const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
+
+
+OAuth2_client.setCredentials({refresh_token:config.refreshToken})
 
 const child = [{ weight: "?", age: "?", months: "?" }];
 
@@ -537,21 +544,30 @@ app.get("/contact", (req, res) => {
 
 app.post("/contact", function (req, res) {
   console.log(req.body)
-  const transporter = nodemailer.createTransport ({
-    service: 'gmail',
-    auth: {
-      user: 'paedsinduction@gmail.com',
-      pass: 'paedsinduction22'
-    }
-  })
-
+  const accessToken = OAuth2_client.getAccessToken()
+  
   const mailOptions = {
     from: req.body.email,
     to: 'paedsinduction@gmail.com',
     subject: 'paeds induction',
-    text: req.body.message
+    text: `name: ${req.body.name},
+    email: ${req.body.email},
+    message: ${req.body.message}`
 
   }
+
+  const transporter = nodemailer.createTransport ({
+    service: 'gmail',
+    auth: {
+      type: 'OAuth2',
+      user: config.user,
+      clientId: config.clientId,
+      clientSecret: config.clientSecret,
+      refreshToken: config.refreshToken,
+      accessToken: accessToken,
+    }
+  })
+
   transporter.sendMail(mailOptions, (error, info)=>{
     if(error) {
       console.log(error)
@@ -560,9 +576,11 @@ app.post("/contact", function (req, res) {
       console.log('Email sent: ' + info.response);
       res.send('success')
     }
-  
+    transporter.close()
+ 
   })
   
+
 });
 
 app.get("/formulae", (req, res) => {
