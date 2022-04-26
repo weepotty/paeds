@@ -250,19 +250,19 @@ app.get("/pdfs/ppt-nov-21.pdf", function (req, res) {
 // creating password
 
 
-// app.get('/register', (req, res) => {
-// res.render('register')
-// })
+app.get('/register', (req, res) => {
+res.render('register')
+})
 
-// app.post("/register", async (req, res) => {
+app.post("/register", async (req, res) => {
 
-//   const {password} = req.body;
-//   const hash = await bcrypt.hash(password, 12)
-//   const user = new User({password:hash})
-//   await user.save()
-// req.session.user_id = user._id;
-//   res.redirect('/')
-// })
+  const {password} = req.body;
+  const hash = await bcrypt.hash(password, 12)
+  const user = new User({password:hash})
+  await user.save()
+req.session.user_id = user._id;
+  res.redirect('/')
+})
 
 
 app.get('/login', (req, res) => {
