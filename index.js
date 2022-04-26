@@ -77,6 +77,11 @@ const titles = {
   formulae: "Formulae",
 };
 
+
+
+
+
+
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -550,8 +555,8 @@ app.post("/contact", function (req, res) {
     from: req.body.email,
     to: 'paedsinduction@gmail.com',
     subject: 'paeds induction',
-    text: `name: ${req.body.name},
-    email: ${req.body.email},
+    text: `name: ${req.body.name}
+    email: ${req.body.email}
     message: ${req.body.message}`
 
   }

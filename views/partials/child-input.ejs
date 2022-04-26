@@ -1,11 +1,14 @@
 <div class="box" id="childInput">
-  <form action="<%= currentPage %> " method="POST">
+  <form action="<%= currentPage %> " method="POST" id="childForm">
     <table class="table has-text-centered is-fullwidth">
       <tr>
         <td class="is-vcentered has-text-right">Weight</td>
         <td class="px-0">
+
+          
+          <!-- removed id of weight for this input as duplicated in which child ejs-->
           <input
-            id="weight"
+    
             name="weight"
             class="input is-success"
             type="number"

@@ -26,41 +26,7 @@
 
   });
  
-  const fullName = document.getElementById('name')
-  const email = document.getElementById('email')
-  const message = document.getElementById('message')
-
-  const contactForm = document.querySelector('.contact-form')
-contactForm.addEventListener('submit', (e) => {
-  e.preventDefault()
-  let formData = {
-    name: fullName.value,
-    email: email.value,
-    message: message.value
-  }
-
-  let xhr = new XMLHttpRequest();
-  xhr.open('POST', '/contact');
-  xhr.setRequestHeader('content-type', 'application/json')
-  xhr.onload = function (){
-    console.log(xhr.responseText);
-    if(xhr.responseText=='success'){
-      alert('email sent');
-      fullName.value = '';
-      email.value='';
-      message.value='';
-
-    } else {
-      alert('something went wrong!')
-    }
-  }
-
-
-xhr.send(JSON.stringify(formData));
-
-
-
-})
+ 
 
 const arrButtons = document.getElementsByClassName('arr-button')
 const arrModal = document.getElementById('arr-modal')
@@ -102,12 +68,11 @@ for (let buttons of dexButtons) {
 
 
  
- const submitButton = document.getElementById("submit")
- submitButton.addEventListener('click', getWeight())
-
-
+ const childForm = document.getElementById("childForm")
+ childForm.addEventListener('submit', getWeight())
+ 
  function getWeight (){
-   let weight = document.getElementById("weight").innerText;
+  let weight = document.getElementById("weight").innerText;
    let months = document.getElementById("monthsBannerText").innerText;
   
 if (months > 0) {
@@ -129,6 +94,7 @@ if (months > 0) {
   } else {
     document.getElementById("analgesia-instructions").innerHTML = "enter weight to get NCA/PCA morphine protocol"
   }
+
 
 
 let currentPatient = document.getElementById("currentPatient")
@@ -178,42 +144,4 @@ childInput.classList.remove("is-hidden");
 
 
 
-// const doses = {
-//   midazbuccal: 0.3,
-//   midazoral: 0.5,
-//   dexmed: 3
-//   }
-
-// function getWeight() {
-//   return (document.getElementById("weight").value)
-//   }
-
-//   let getWeight = () => document.getElementById("weight").value
-
-// // function amount(w,d){
-// //   return w*d
-// // }
-
-// // let midazbDose = amount(weight,doses.midazbuccal)
-  
-// document.getElementById('test').innerHTML = getWeight()
-
-//   for (let drug in doses) {
-//         if (doses.hasOwnProperty(drug)) {
-//           doses[drug] *= weight;
-//         }
-//       }
-
-
-
-
-
-
-
-
-
-// title.innerHTML="WILL THIS WORK?"
-
-
- 
 
