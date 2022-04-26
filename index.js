@@ -1,5 +1,5 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config()};
+// if (process.env.NODE_ENV == "production") {
+//   require("dotenv").config()};
 
 const express = require("express");
 const PORT = process.env.PORT || 5000;
@@ -14,7 +14,7 @@ const config = require('./config.js')
 const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
 // const bcrypt = require("bcryptjs");
 // const session = require ('express-session')
-const inductionPwd = process.env.PASSWORD
+// const inductionPwd = process.env.PASSWORD
 
 
 OAuth2_client.setCredentials({refresh_token:config.refreshToken})
@@ -119,7 +119,7 @@ app.use(express.json())
 
 const checkPassword = (req, res, next) => {
   const {password} = req.body;
-if (password === inductionPwd) {
+if (password === 'paedspassword') {
 next()
 }
 else {
@@ -129,7 +129,7 @@ else {
 }
 const checkPassword2 = (req, res, next) => {
   const {password} = req.body;
-if (password === inductionPwd) {
+if (password === 'paedspassword') {
 next()
 }
 else {
@@ -315,7 +315,7 @@ app.get('/login2', (req, res) => {
 app.post('/login', (req, res) => {
   const {password} = req.body;
 
-  if (password === inductionPwd) {
+  if (password === 'paedspassword') {
 
     res.render('starterpack', { title: titles.induction })
   }
@@ -327,7 +327,7 @@ app.post('/login', (req, res) => {
 app.post('/login2', (req, res) => {
   const {password} = req.body;
 
-  if (password === inductionPwd) {
+  if (password === 'paedspassword') {
 
     res.render('powerpoints', { title: titles.induction })
   }
