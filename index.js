@@ -9,7 +9,7 @@ const {google} = require('googleapis')
 const OAuth2 = google.auth.OAuth2;
 const config = require('./config.js')
 const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const session = require ('express-session')
 
 OAuth2_client.setCredentials({refresh_token:config.refreshToken})
@@ -250,19 +250,19 @@ app.get("/pdfs/ppt-nov-21.pdf", function (req, res) {
 // creating password
 
 
-app.get('/register', (req, res) => {
-res.render('register')
-})
+// app.get('/register', (req, res) => {
+// res.render('register')
+// })
 
-app.post("/register", async (req, res) => {
+// app.post("/register", async (req, res) => {
 
-  const {password} = req.body;
-  const hash = await bcrypt.hash(password, 12)
-  const user = new User({password:hash})
-  await user.save()
-req.session.user_id = user._id;
-  res.redirect('/')
-})
+//   const {password} = req.body;
+//   const hash = await bcrypt.hash(password, 12)
+//   const user = new User({password:hash})
+//   await user.save()
+// req.session.user_id = user._id;
+//   res.redirect('/')
+// })
 
 
 app.get('/login', (req, res) => {
