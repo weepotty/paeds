@@ -9,12 +9,12 @@ const app = express();
 // const User = require ('./models/user')
 // const mongoose = require("mongoose");
 const {google} = require('googleapis')
-const flash = require("connect-flash");
+
 const OAuth2 = google.auth.OAuth2;
 const config = require('./config.js')
 const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
 // const bcrypt = require("bcryptjs");
-const session = require ('express-session')
+// const session = require ('express-session')
 // const inductionPwd = process.env.PASSWORD
 
 
@@ -106,11 +106,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 app.use(express.json())
-app.use(flash())
-app.use(session({secret:'notagoodsecret',
-resave: false,
-    saveUninitialized: true
-}))
+
+// app.use(session({secret:'notagoodsecret',
+// resave: false,
+//     saveUninitialized: true
+// }))
 
 // const requireLogin = (req, res, next) => {
 
@@ -120,12 +120,6 @@ resave: false,
 // next();
 // }
 
-app.use((req, res, next) => {
-  res.locals.currentUser = req.user;
-  res.locals.success = req.flash("success");
-  res.locals.error = req.flash("error");
-  next();
-});
 
 const checkPassword = (req, res, next) => {
   const {password} = req.body;
