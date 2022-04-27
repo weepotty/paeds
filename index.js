@@ -533,7 +533,7 @@ app.get("/airway", (req, res) => {
   let months = parseInt(child[child.length - 1].months);
 
   const observations = [
-    { name: "RR", value: parseFloat(24 - age / 2), units: "breaths/min" },
+    { name: "RR", value: 'enter age', units: "breaths/min" },
     { name: "Tidal volume (6ml/kg)", value: 6 * weight, units: "ml" },
   ];
 
@@ -552,6 +552,44 @@ app.get("/airway", (req, res) => {
     }
   });
 
+//RR ranges
+  switch (true) {
+    case age < 1 && months <1:
+      observations[0].value = '40-60';
+      break;
+    case age < 1 && months <= 1:
+      observations[0].value = '30-50';
+      break;
+    case age < 1 && months <= 3:
+      observations[0].value = '30-45';
+      break;
+      case age < 1 && months <= 6:
+      observations[0].value = '25-35';
+      break;
+      case age >= 1 && age < 2:
+      observations[0].value = '20-30';
+      break;
+      case age >= 2 && age < 4:
+      observations[0].value = '20-28';
+      break;
+      case age >= 4 && months < 6:
+      observations[0].value = '20-26';
+      break;
+      case age >= 6 && age < 8:
+      observations[0].value = '18-24';
+      break;
+      case age >= 8 && age < 10:
+      observations[0].value = '18-22';
+      break;
+      case age >=10:
+      observations[0].value = '16-20';
+      break;
+      
+  }
+
+
+
+  //LMA sizing
   switch (true) {
     case weight < 5:
       airwayDevices[3].formula = 1;
