@@ -24,12 +24,12 @@ const child = [{ weight: "?", age: "?", months: "?" }];
 const premeds = [
   { name: "Midazolam (buccal)", dose: 0.3, units: "mg", max: 10 },
   { name: "Midazolam (oral)", dose: 0.5, units: "mg", max: 20 },
-  { name: "Dexmedetomidine (intranasal)", dose: 2, units: "mcg" },
+  { name: "Dexmedetomidine (intranasal)", dose: 2, units: "mcg *", max: 200 },
 ];
 
 const inductionDrugs = [
-  { name: "Propofol 2%", dose: 3, units: "mg", concentration: 20 },
-  { name: "Ketamine (IV)", dose: 2, units: "mg", concentration: 10 },
+  { name: "Propofol 1%", dose: 3, units: "mg", concentration: 10 },
+  { name: "Ketamine 10mg/ml", dose: 2.5, units: "mg", concentration: 10 },
   { name: "Rocuronium (normal)", dose: 0.6, units: "mg", concentration: 10 },
   { name: "Rocuronium (RSI)", dose: 1, units: "mg", concentration: 10 },
   { name: "Neostig/Glyco", dose: 0.02, units: "ml", max: 1 },
@@ -40,10 +40,10 @@ const emergencyDrugs = [
     name: "Suxamethonium (IV)",
     dose: 1,
     units: "mg",
-    concentration: 100,
+    concentration: 50,
     max: 150,
   },
-  { name: "Atropine", dose: 20, units: "mcg", concentration: 600, max: 1200 },
+  { name: "Atropine", dose: 20, units: "mcg", concentration: 600, max: 600 },
 ];
 
 const antibiotics = [
@@ -54,8 +54,8 @@ const antibiotics = [
 ];
 
 const antiemetics = [
-  { name: "Ondansetron", dose: 0.15, units: "mg", max: 8, concentration: 2 },
-  { name: "Dexamethasone", dose: 0.15, units: "mg", max: 10, concentration: 4 },
+  { name: "Ondansetron", dose: 0.15, units: "mg", max: 4, concentration: 2 },
+  { name: "Dexamethasone", dose: 0.15, units: "mg", max: 6.6, concentration: 3.3 },
 ];
 
 const painkillers = [
@@ -71,7 +71,7 @@ const painkillers = [
     name: "Ibuprofen PO",
     dose: 10,
     units: "mg",
-    freq: "6 hrly, max TDS",
+    freq: "6-8hrly",
     max: 400,
   },
   { name: "Diclofenac PO/PR", dose: 1, units: "mg", freq: "8 hrly", max: 50 },
@@ -586,12 +586,49 @@ app.get("/airway", (req, res) => {
     }
   });
 
+
+  // microcuff ETT izing
+
   switch (true) {
-    case 1 <= age && age < 2:
+    case weight < 3:
+      airwayDevices[0].formula = 'not recommended <3kg'
+      break;
+    case age ===0 && months <8:
+      airwayDevices[0].formula = 3.0
+      break;
+    case age ===0 && months >=8: 
       airwayDevices[0].formula = 3.5;
       break;
-    case age < 1:
-      airwayDevices[0].formula = 3.0;
+
+      case 1 <= age && age < 2:
+        airwayDevices[0].formula = 3.5;
+        break;
+    case 2 <= age && age < 4:
+      airwayDevices[0].formula = 4.0;
+      break;
+
+      case 4 <= age && age < 6:
+      airwayDevices[0].formula = 4.5;
+      break;
+    
+      case 6 <= age && age < 8:
+      airwayDevices[0].formula = 5.0;
+      break;
+
+      case 8 <= age && age < 10:
+      airwayDevices[0].formula = 5.5;
+      break;
+
+      case 10 <= age && age < 12:
+      airwayDevices[0].formula = 6.0;
+      break;
+
+      case 12 <= age && age < 14:
+      airwayDevices[0].formula = 6.5;
+      break;
+
+      case 14 <= age && age < 16:
+      airwayDevices[0].formula = 7.0;
       break;
   }
 
