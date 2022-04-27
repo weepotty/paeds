@@ -83,6 +83,7 @@ const titles = {
   induction: "Induction",
   contact: "Contact",
   formulae: "Formulae",
+  login: "Password Required"
 };
 
 
@@ -292,11 +293,11 @@ app.get("/pdfs/ppt-nov-21.pdf", function (req, res) {
 
 
 app.get('/login', (req, res) => {
-  res.render('login', { title: titles.contact })
+  res.render('login', { title: titles.login })
 })
 
 app.get('/login2', (req, res) => {
-  res.render('login2', { title: titles.contact })
+  res.render('login2', { title: titles.login })
 })
 // app.post('/login', async (req, res) => {
 //   const {password} = req.body;
