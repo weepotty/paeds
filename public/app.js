@@ -74,10 +74,21 @@ for (let buttons of dexButtons) {
  function getWeight (){
   let weight = document.getElementById("weight").innerText;
    let months = document.getElementById("monthsBannerText").innerText;
+  let age = document.getElementById("age").innerText;
   
+const actualWeight = parseInt(weight)
+const estWeight = 2 * (parseInt(age) + 4)
+const overweight = 1.5 * estWeight
+const underweight = 0.5 * estWeight
+
+if (actualWeight > overweight || actualWeight < underweight) {
+  document.getElementById('warning').classList.remove('is-hidden')
+}
+
+
 if (months > 0) {
   document.getElementById("monthsBanner").classList.remove("is-hidden")
-  document.getElementById("monthsBanner").classList.add("is-hidden-tablet")
+  // document.getElementById("monthsBanner").classList.add("is-hidden-tablet")
 } 
 
    if (weight <5 ) {
