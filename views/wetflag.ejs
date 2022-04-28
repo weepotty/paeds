@@ -16,8 +16,40 @@
     
     <div class="columns">
       <div class="column">
+
+
+        <% if (weight) { %>
+          <div class="box has-text-dark is-size-7" id="currentPatient">
+            <div class="column">
+              <p class="has-text-weight-bold is-size-6">Current patient</p>
+              <p>
+                weight:<span class="has-text-danger has-text-weight-bold">
+                  <%= weight %></span
+                >
+                kg
+              </p>
+              <p>
+                age:
+                <span class="has-text-danger has-text-weight-bold"><%= age %></span> years 
+                
+                <% if (!isNaN(months)) { %>
+                <span class="has-text-danger has-text-weight-bold"><%= months %></span> months
+              <% } %>
+          
+                
+              </p>
+            </div>
+            <div class="column pt-0">
+              <div>
+                <!-- <button id="newPatient" class="button is-primary is-small">
+                  new patient
+                </button> -->
+              </div>
+            </div>
+          </div>
+        <% } %>
         <!-- column 1 -->
-        <%- include ("partials/child-input") -%> 
+        
         <div class="box">
           <span class="has-text-danger">*Resus UK: for children between 1 and 10 years old</span>
           <table class="table is-fullwidth has-text-left mt-2">
@@ -49,13 +81,13 @@
           
         
         </div>
-        <div class="box">
+        <div class="box has-text-grey">
           <p class="has-text-weight-bold">Formulae</p>
           <p>Weight (age+4) x 2</p>
           <p>Energy 4J/kg</p>
           <p>Tube diameter age/4+4</p>
           <p>Tube length [oral: age/2 + 12] [nasal: age/2 + 15]</p> 
-          <p>Fluid 20ml/kg [medical], 10mg/kg [trauma]</p>
+          <p>Fluid 10mg/kg </p>
           <p>Lorazepam 0.1mg/kg</p>
           <p>Adrenaline 0.1ml/kg of 1:10 000 IV</p>
           <p>Glucose 10% 2ml/kg</p></div>

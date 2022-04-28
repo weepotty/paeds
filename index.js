@@ -342,9 +342,9 @@ app.post('/login2', (req, res) => {
 
 
 app.get("/", function (req, res) {
-  let weight = parseFloat(child[child.length - 1].weight);
-  let age = parseFloat(child[child.length - 1].age);
-  let months = parseFloat(child[child.length - 1].months);
+  let weight = Number(child[child.length - 1].weight);
+  let age = Number(child[child.length - 1].age);
+  let months = Number(child[child.length - 1].months);
   let currentPage = req.url;
 
   res.render("home", {
@@ -485,21 +485,24 @@ app.post("/wetflag", (req, res) => {
 });
 
 app.get("/wetflag", (req, res) => {
-  let weight = parseInt(child[child.length - 1].weight);
-  let age = parseInt(child[child.length - 1].age);
-  let months = parseInt(child[child.length - 1].months);
+  let weight = Number(child[child.length - 1].weight);
+  let age = Number(child[child.length - 1].age);
+  let months = Number(child[child.length - 1].months);
   const parameters = [
     { name: "Weight", formula: (age + 4) * 2, units: "kg" },
     { name: "Energy", formula: weight * 4, units: "J" },
     { name: "Tube size (uncuffed)", formula: age / 4 + 4, units: "mm (ID)" },
     { name: "Tube length (oral)", formula: age / 2 + 12, units: "cm" },
     { name: "Tube length (nasal)", formula: age / 2 + 15, units: "cm" },
-    { name: "Fluid (medical)", formula: 20 * weight, units: "ml" },
-    { name: "Fluid (trauma)", formula: 10 * weight, units: "ml" },
+    { name: "Fluid", formula: 10 * weight, units: "ml" },
     { name: "Lorazepam", formula: 0.1 * weight, units: "mg" },
     { name: "Adrenaline 1:10 000 IV", formula: 0.1 * weight, units: "ml" },
     { name: "Glucose 10%", formula: 2 * weight, units: "ml" },
   ];
+
+if (parameters[1].formula > 150) {
+  parameters[1].formula = 150
+}
 
   parameters.forEach((parameter) => {
     parameter["formula"] = parseFloat(parameter["formula"].toFixed(1));
@@ -524,20 +527,18 @@ app.get("/wetflag", (req, res) => {
 
 app.post("/airway", (req, res) => {
   const { weight, age, months } = req.body;
-  // const weight = req.body.weight;
-  // const age = req.body.age
   child.push({ weight, age, months });
   res.redirect("/airway");
 });
 
 app.get("/airway", (req, res) => {
-  let weight = parseInt(child[child.length - 1].weight);
-  let age = parseInt(child[child.length - 1].age);
-  let months = parseInt(child[child.length - 1].months);
+  let weight = Number(child[child.length - 1].weight);
+  let age = Number(child[child.length - 1].age);
+  let months = Number(child[child.length - 1].months);
 
   const observations = [
     { name: "RR", value: 'enter age', units: "breaths/min" },
-    { name: "Tidal volume (6ml/kg)", value: 6 * weight, units: "ml" },
+    { name: "Tidal volume (6ml/kg)", value: Math.round(6 * weight), units: "ml" },
   ];
 
   const airwayDevices = [
@@ -554,6 +555,8 @@ app.get("/airway", (req, res) => {
       observation["value"] = observation["value"];
     }
   });
+
+
 
 //RR ranges
   switch (true) {
@@ -591,7 +594,6 @@ app.get("/airway", (req, res) => {
   }
 
 
-
   //LMA sizing
   switch (true) {
     case weight < 5:
@@ -623,11 +625,18 @@ app.get("/airway", (req, res) => {
   airwayDevices.forEach((device) => {
     if (isNaN(device["formula"])) {
       device["formula"] = " ";
-    } else {
+    } 
+    else {
       device["formula"] = device["formula"];
     }
   });
 
+switch (true) {
+  
+case age < 1 :
+  airwayDevices[1].formula = 'seek advice for under 1s'
+  airwayDevices[2].formula = 'seek advice for under 1s'
+}
 
   // microcuff ETT izing
 

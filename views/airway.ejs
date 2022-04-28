@@ -2,6 +2,7 @@
 <%- include ("partials/header") -%> 
 <%- include ("partials/which-child") -%> 
 
+
 <div class="container mt-5">
 
   <div class="tabs is-boxed my-0">
@@ -22,7 +23,41 @@
 
 
         <!-- column 1 -->
-        <%- include ("partials/child-input") -%> 
+        
+
+        <% if (weight) { %>
+          <div class="box has-text-dark is-size-7" id="currentPatient">
+            <div class="column">
+              <p class="has-text-weight-bold is-size-6">Current patient</p>
+              <p>
+                weight:<span class="has-text-danger has-text-weight-bold">
+                  <%= weight %></span
+                >
+                kg
+              </p>
+              <p>
+                age:
+                <span class="has-text-danger has-text-weight-bold"><%= age %></span> years 
+                
+                <% if (!isNaN(months)) { %>
+                <span class="has-text-danger has-text-weight-bold"><%= months %></span> months
+              <% } %>
+          
+                
+              </p>
+            </div>
+            <div class="column pt-0">
+              <!-- <div>
+                <button id="newPatient" class="button is-primary is-small">
+                  new patient
+                </button>
+              </div> -->
+            </div>
+          </div>
+        <% } %>
+        
+        
+        
         <div class="box">
           <table class="table is-fullwidth has-text-left">
             <tr>

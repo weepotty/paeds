@@ -36,8 +36,6 @@ const laToxButtons = document.getElementsByClassName('la-tox-button')
 const laToxModal = document.getElementById('la-tox-modal')
 const dexButtons = document.getElementsByClassName('dex-button')
 const dexModal = document.getElementById('dex-modal')
-// const morphineButtons = document.getElementsByClassName('morphine-button')
-// const morphineModal = document.getElementById('morphine-modal')
 
 
 
@@ -61,10 +59,7 @@ for (let buttons of dexButtons) {
   buttons.addEventListener('click', () => {
     dexModal.classList.toggle('is-active')
 })}
-// for (let buttons of morphineButtons) {
-//   buttons.addEventListener('click', () => {
-//     morphineModal.classList.toggle('is-active')
-// })}
+
 
 
  
@@ -72,24 +67,20 @@ for (let buttons of dexButtons) {
  childForm.addEventListener('submit', getWeight())
  
  function getWeight (){
-  let weight = document.getElementById("weight").innerText;
-   let months = document.getElementById("monthsBannerText").innerText;
-  let age = document.getElementById("age").innerText;
-  
-const actualWeight = parseInt(weight)
-const estWeight = 2 * (parseInt(age) + 4)
+  let weight = Number(document.getElementById("weight").innerText);
+  let age = Number(document.getElementById("age").innerText);
+  let months = Number(document.getElementById("monthsBannerText").innerText);
+
+const estWeight = 2 * (age + 4)
 const overweight = 1.5 * estWeight
 const underweight = 0.5 * estWeight
 
-if (actualWeight > overweight || actualWeight < underweight) {
-  document.getElementById('warning').classList.remove('is-hidden')
-}
 
 
-if (months > 0) {
-  document.getElementById("monthsBanner").classList.remove("is-hidden")
-  // document.getElementById("monthsBanner").classList.add("is-hidden-tablet")
-} 
+// if (months > 0) {
+//   document.getElementById("monthsBanner").classList.remove("is-hidden")
+//   // document.getElementById("monthsBanner").classList.add("is-hidden-tablet")
+// } 
 
    if (weight <5 ) {
    document.getElementById("analgesia-instructions").innerHTML = "weight<5kg: discuss NCA morphine prescription with consultant"
@@ -98,7 +89,7 @@ if (months > 0) {
     document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol for <50kg"
     document.getElementById("under50").classList.toggle('is-hidden')
     
-  } else if (weight > 50){
+  } else if (weight >= 50){
     document.getElementById("analgesia-instructions").innerHTML = "NCA/PCA morphine protocol for ≥50kg"
     document.getElementById("over50").classList.toggle('is-hidden')
 
@@ -107,6 +98,13 @@ if (months > 0) {
   }
 
 
+  if (age <1 && months <=1) {
+    document.getElementById('warningAge').classList.remove('is-hidden')
+  }
+  else if (age > 1 && weight > overweight || weight < underweight) {
+    document.getElementById('warningWeight').classList.remove('is-hidden')
+  }
+    
 
 let currentPatient = document.getElementById("currentPatient")
   let childInput = document.getElementById("childInput")
@@ -134,13 +132,12 @@ document.getElementById("newPatientPhone").classList.add("is-hidden-tablet")
  
  let newPatient = document.getElementById("newPatient")
 newPatient.addEventListener('click', () => {
-  
   childInput.classList.remove("is-hidden")
   currentPatient.classList.add("is-hidden")
   
-}
+})
 
-)
+
 
 let newPatientPhone = document.getElementById("newPatientPhone")
 newPatientPhone.addEventListener('click', () =>  {

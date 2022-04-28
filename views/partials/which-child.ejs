@@ -23,13 +23,16 @@
     ><%=age %></span
   >y
 
-  <span class="is-hidden" id="monthsBanner">
+<% if (months>0){ %>
+  <span id="monthsBanner">
     <span
       class="has-text-info has-text-weight-bold is-size-5"
       id="monthsBannerText"
       ><%= months %></span
     >m</span
   >
+
+<% } %>
 </div>
 
 <% } %>
