@@ -490,7 +490,7 @@ app.get("/wetflag", (req, res) => {
   let months = Number(child[child.length - 1].months);
   const parameters = [
     { name: "Weight", formula: (age + 4) * 2, units: "kg" },
-    { name: "Energy", formula: weight * 4, units: "J" },
+    { name: "Energy", formula: Math.round(weight * 4), units: "J" },
     { name: "Tube size (uncuffed)", formula: age / 4 + 4, units: "mm (ID)" },
     { name: "Tube length (oral)", formula: age / 2 + 12, units: "cm" },
     { name: "Tube length (nasal)", formula: age / 2 + 15, units: "cm" },

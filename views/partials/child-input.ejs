@@ -97,6 +97,13 @@
   </button>
 </div>
 
+<% if (age <1 && months <=1) { %>
+  <div class="box has-text-danger" id="warningAge">
+   WARNING: for neonates please seek advice as some drugs may not be suitable and paracetamol dosing is complex.
+  
+    </div>
+  <% } %>
+
 <div class="box has-text-danger is-hidden" id="warningWeight">
 WARNING:
 the weight entered is greater than 50% above/below estimated weight according to child's age. please check that this is correct.
@@ -104,7 +111,3 @@ the weight entered is greater than 50% above/below estimated weight according to
 
 </div>
 
-<div class="box has-text-danger is-hidden" id="warningAge">
- WARNING: for neonates please seek advice as some drugs may not be suitable and paracetamol dosing is complex.
-  
-  </div>

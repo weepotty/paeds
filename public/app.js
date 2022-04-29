@@ -69,12 +69,13 @@ for (let buttons of dexButtons) {
  function getWeight (){
   let weight = Number(document.getElementById("weight").innerText);
   let age = Number(document.getElementById("age").innerText);
-  let months = Number(document.getElementById("monthsBannerText").innerText);
-
+ 
 const estWeight = 2 * (age + 4)
 const overweight = 1.5 * estWeight
 const underweight = 0.5 * estWeight
-
+if ((age > 0 && weight > overweight) || (age > 0 && weight < underweight)) {
+  document.getElementById('warningWeight').classList.remove('is-hidden')
+}
 
 
 // if (months > 0) {
@@ -98,12 +99,6 @@ const underweight = 0.5 * estWeight
   }
 
 
-  if (age <1 && months <=1) {
-    document.getElementById('warningAge').classList.remove('is-hidden')
-  }
-  else if (age > 1 && weight > overweight || weight < underweight) {
-    document.getElementById('warningWeight').classList.remove('is-hidden')
-  }
     
 
 let currentPatient = document.getElementById("currentPatient")
@@ -120,15 +115,17 @@ document.getElementById("newPatientPhone").classList.add("is-hidden-tablet")
 // childBanner.classList.add("is-hidden-tablet");
 
   }
- }
+ 
 
-// const airwayFluidsTab = document.getElementById("airwayFluidsTab")
-// airwayFluidsTab.addEventListener('click', showBanner())
 
-// function showBanner () {
-//   document.getElementById("childBanner").classList.remove("is-hidden")
-//   document.getElementById("childBanner").classList.add("is-hidden-tablet");
-// }
+
+  // if (age <1 && months <=1) {
+  //   document.getElementById('warningAge').classList.remove('is-hidden')
+  
+
+
+}
+
  
  let newPatient = document.getElementById("newPatient")
 newPatient.addEventListener('click', () => {
@@ -145,10 +142,9 @@ newPatientPhone.classList.add("is-hidden");
 childInput.classList.remove("is-hidden");
 
 
-}
+})
 
 
-)
 
 
 
