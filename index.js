@@ -25,7 +25,7 @@ const child = [{ weight: "?", age: "?", months: "?" }];
 const premeds = [
   { name: "Midazolam (buccal)", dose: 0.3, units: "mg", max: 10 },
   { name: "Midazolam (oral)", dose: 0.5, units: "mg", max: 20 },
-  { name: "Dexmedetomidine (intranasal)", dose: 2, units: "mcg *", max: 200 },
+  { name: "Dexmedetomidine (intranasal)*", dose: 2, units: "mcg", max: 200 },
 ];
 
 const inductionDrugs = [
@@ -794,7 +794,11 @@ app.post("/contact", function (req, res) {
 });
 
 app.get("/formulae", (req, res) => {
-  res.render("formulae", { title: titles.formulae });
+  inductionDrugs[4].name = "Neostig/Glyco 2.5mg/0.5mg"
+  inductionDrugs[4].units = ""
+  inductionDrugs[4].dose = "0.02ml"
+  antibiotics[3].name = "Gentamicin"
+  res.render("formulae", { title: titles.formulae, premeds, inductionDrugs, emergencyDrugs, antibiotics, antiemetics, painkillers});
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

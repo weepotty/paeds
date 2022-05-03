@@ -30,30 +30,47 @@
             
 
            
-            
+            <div class="box has-text-black">
+              Please see <a href="/formulae">this page</a> for details of the dosages and calculations used here.
+
+            </div>
               
              
 
              <!-- premeds -->
 
-              <div class="box">
-  <table class="table has-text-left">
+              <div class="box has-text-right">
+  <table class="table has-text-left mb-0 pb-0">
     <tr>
        <th>Premed</th>
        <th>Amount</th> 
     </tr>
-
     <% for (let premed of premeds) { %>
       <tr>
        <td><%= premed.name %></td>
        <td><%= premed.amount %> <%=premed.units %></td>
       </tr>    
      <% } %>
-     
-     
-     
  </table>
  * 2mcg/kg, can be up to 4mcg/kg (max 200mcg)
+ <button class="button is-primary dex-button is-small is-light">
+  🔎 Guidelines Quick Glance
+</button>
+<div class="modal" id="dex-modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <embed
+      src="images/premed-dex-quick.jpg"
+      frameborder="0"
+      width="100%"
+      height="850px"
+    />
+  </div>
+  <button
+    class="modal-close is-large dex-button"
+    aria-label="close"
+  ></button>
+</div>
 
 </div>
 

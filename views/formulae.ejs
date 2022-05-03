@@ -5,65 +5,161 @@
   <div class="box has-background-warning columns">
     <div class="container my-5 mt-5 mx-5 px-5 column">
       <!-- <h1>🚜 under construction</h1> -->
-      <div class="box">
+      <div class="box has-text-danger">
         <a href='https://www.sapg.scot/media/2918/ukmiqa-drug-dosing-in-childhood-obesity-1.pdf'> Drug dosing in obesity or malnutrition </a>
         
       </div>
+<div class="box has-text-right">
+
+  <table class="table is-fullwidth has-text-left">
+    <tr>
+      <th>Premed</th>
+      <th>Dose</th>
+      <th>Max</th> 
+   </tr>
+
+   <% for (let premed of premeds) { %>
+     <tr>
+      <td><%= premed.name %></td>
+      <td><%= premed.dose %><%= premed.units %>/kg</td>
+      <td><%= premed.max %><%= premed.units %> </td>
+     </tr>  
+     <% } %>  
+  </table>
+  * 2-4mcg/kg to max 200mcg
+
+</div>
+
 <div class="box">
 
-  <span class="has-text-weight-bold">Premeds</span>
-  <ul>
-    <li>Midazolam (buccal) 0.3mg/kg to max 10mg</li>
-    <li>Midazolam (oral) 0.5mg/kg to max 20mg</li>
-    <li>Dexmedetomidine (intranasal) 2-4mcg/kg to max 200mcg</li>
-  </ul>
+
+  <table class="table is-fullwidth has-text-left">
+    <tr>
+      <th>Drug</th>
+      <th>Concentration</th>
+      <th>Dose</th> 
+
+   </tr>
+
+   <% for (let idrug of inductionDrugs) { %>
+     <tr>
+      <td><%= idrug.name %></td>
+      <td><%= idrug.concentration %><%= idrug.units %>/ml</td>
+      <td><%= idrug.dose %><%= idrug.units %>/kg</td>
+     </tr>  
+     <% } %>  
+  </table>
+
+
+</div>
+<div class="box">
+  <table class="table is-fullwidth has-text-left">
+    <tr>
+      <th>Emergency Drug</th>
+      <th>Concentration</th>
+      <th>Dose</th> 
+      <th>Max</th> 
+
+
+   </tr>
+
+   <% for (let edrug of emergencyDrugs) { %>
+     <tr>
+      <td><%= edrug.name %></td>
+      <td><%= edrug.concentration %><%= edrug.units %>/ml</td>
+      <td><%= edrug.dose %><%= edrug.units %>/kg</td>
+      <td><%= edrug.max %><%= edrug.units %></td>
+     </tr>  
+     <% } %>  
+  </table>
+</div>
 </div>
 
-<div class="box">
-  
-<span class="has-text-weight-bold">Induction Drugs</span> 
-  <ul>
-    <li>Propofol 1% 3mg/kg. conc 10mg/ml</li>
-    <li>Ketamine 2.5mg/kg. conc 10mg/ml</li>
-    <li>Rocuronium 0.6mg/kg. conc 10mg/ml</li>
-    <li>Rocuronium (RSI) 1mg/kg. conc 10mg/ml</li>
-    <li>Neostig/Glyco 0.02ml/kg to max 1ml. conc 2.5mg/0.5mg per ml</li>
-  </ul>
-</div>
-<div class="box">
-  
-  <span class="has-text-weight-bold">Emergency Drugs</span>
-  <ul>
-    <li>Suxamethonium 1mg/kg to max 150mg. conc 50mg/ml</li>
-    <li>Atropine 20mcg/kg to max 600mcg. conc 600mcg/ml</li>
-  </ul>
-</div>
-</div>
+
+<!-- next column -->
 <div class="container my-5 mt-5 mx-5 px-5 column">
 <div class="box">
-  <span class="has-text-weight-bold">Antibiotics</span>
-  <ul>
-    <li>Cefuroxime 50mg/kg to max 1500mg</li>
-    <li>Co-amoxiclav 30mg/kg to max 1200mg</li>
-    <li>Metronidazole 7.5mg/kg to max 500mg</li>
-    <li>Gentamicin 3mg/kg</li>
-  </ul>
+  <table class="table is-fullwidth has-text-left">
+    <tr>
+      <th>Drug</th>
+      <th>Dose</th> 
+      <th>Max</th> 
+   </tr>
+
+   <% for (let abx of antibiotics) { %>
+     <tr>
+      <td><%= abx.name %></td>
+      <td><%= abx.dose %><%= abx.units %>/kg</td>
+      <td><%= abx.max %><%= abx.units %></td>
+     </tr>  
+     <% } %>  
+  </table>
+
 </div>
 
 <div class="box">
-  <span class="has-text-weight-bold">Antiemetics</span>
-  <ul>
-    <li>Ondansetron 0.15mg/kg to max 4mg. conc 2mg/ml</li>
-    <li>Dexamethasone 0.15mg/kg to max 6.6mg. conc 3.3mg/ml</li>
-  </ul>
+
+  <table class="table is-fullwidth has-text-left">
+    <tr>
+      <th>Drug</th>
+      <th>Concentration</th>
+      <th>Dose</th> 
+      <th>Max</th> 
+   </tr>
+
+   <% for (let antiemetic of antiemetics) { %>
+     <tr>
+      <td><%= antiemetic.name %></td>
+      <td><%= antiemetic.concentration%><%= antiemetic.units %>/ml</td>
+      <td><%= antiemetic.dose %><%= antiemetic.units %>/kg</td>
+      <td><%= antiemetic.max %><%= antiemetic.units %></td>
+     </tr>  
+     <% } %>  
+  </table>
+  
 </div>
 <div class="box">
-  <span class="has-text-weight-bold">Analgesia</span>
+  <table class="table is-fullwidth has-text-left">
+    <tr>
+      <th>Drug</th>
+      <th>Concentration</th>
+      <th>Dose</th> 
+      <th>Max</th> 
+   </tr>
+
+   <tr>
+     <td>IV Paracetamol <10kg </td>
+     <td>10mg/ml</td>
+     <td>7.5mg/kg </td>
+     <td> </td>
+   </tr>
+   <tr>
+    <td>IV Paracetamol ≥10kg </td>
+    <td>10mg/ml</td>
+    <td>15mg/kg </td>
+    <td>1g</td>
+  </tr>
+  <tr>
+    <td>Ibuprofen PO </td>
+    <td> </td>
+    <td>10mg/kg</td>
+    <td>400mg</td>
+  </tr>
+  <tr>
+    <td>Diclofenac PO/PR </td>
+    <td> </td>
+    <td>1mg/kg</td>
+    <td>50mg</td>
+  </tr>
+  </table>
+  
+  
+  <!-- <span class="has-text-weight-bold">Analgesia</span>
   <ul>
     <li>Paracetamol IV <10kg: 7.5mg/kg</li>
     <li>Paracetamol IV ≥10kg: 15mg/kg to max 1g. conc 10mg/ml</li>
     <li>Ibuprofen 10mg/kg to max 400mg</li>
-  </ul>
+  </ul> -->
 </div>
 
 </div>
