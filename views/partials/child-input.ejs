@@ -2,39 +2,21 @@
 <div class="box" id="childInput">
   <form action="<%= currentPage %> " method="POST" id="childForm">
     <table class="table has-text-centered is-fullwidth">
-      <tr>
-        <td class="is-vcentered has-text-right">Weight</td>
-        <td class="px-0">
+      
 
-          
-          <!-- removed id of weight for this input as duplicated in which child ejs-->
-          <input
-    
-            name="weight"
-            class="input is-success"
-            type="number"
-            required
-            min="0"
-            max="100"
-            step="0.1"
-            value=""
-          />
-        </td>
-        <td class="is-vcentered pl-1 has-text-left">kg</td>
-        <td class="is-vcentered"></td>
-        <td class="is-vcentered"></td>
-      </tr>
+<!-- age input -->
       <tr>
         <td class="is-vcentered has-text-right">Age</td>
         <td class="px-0">
           <input
-            id="age"
+            id="knownAge"
             name="age"
             class="input is-success"
             required
             type="number"
             min="0"
             max="16"
+         
           />
         </td>
         <td class="is-vcentered pl-1 has-text-left">years</td>
@@ -50,15 +32,44 @@
         </td>
         <td class="is-vcentered pl-1 has-text-left">months</td>
       </tr>
-    </table>
+<!-- weight input -->
+<tr>
+  <td class="is-vcentered has-text-right">Weight</td>
+  <td class="px-0">
 
+    
+    <!-- removed id of weight for this input as duplicated in which child ejs-->
+    <input
+id=knownWeight
+      name="weight"
+      class="input is-success"
+      type="number"
+      required
+      min="0"
+      max="100"
+      step="0.1"
+      value=""
+    />
+  </td>
+  <td class="is-vcentered pl-1 has-text-left">kg</td> 
+  <td class="has-text-left px-0 is-vcentered"><input type="checkbox" id="estimate"><label for="estimate"> estimate </label></td>
+
+  <td class="is-vcentered"></td>
+</tr>
+
+
+    </table>
+   
+    
     <div class="has-text-right">
       <button class="button is-primary" id="submit" type="submit">
         Submit
       </button>
     </div>
   </form>
+
 </div>
+
 
 
 <!-- currentpatient -->

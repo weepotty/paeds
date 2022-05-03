@@ -365,7 +365,7 @@ app.get("/", function (req, res) {
 
 app.post("/", function (req, res) {
   const { weight, age, months } = req.body;
-  
+
   child.push({ weight, age, months });
 
 

@@ -61,6 +61,28 @@ for (let buttons of dexButtons) {
 })}
 
 
+const checkbox = document.getElementById('estimate') 
+const knownWeight = document.getElementById('knownWeight')
+
+checkbox.addEventListener('change', function() {
+if (this.checked) {
+  const knownAge = Number(document.getElementById('knownAge').value)
+  if (knownAge > 0) {
+    const estimatedWeight = (2*(knownAge + 4))
+    knownWeight.value = estimatedWeight
+  } else {
+  
+    alert('enter age to estimate weight')
+    this.checked = false
+  }
+  
+  console.log('checkbox checked')
+
+} else{
+  knownWeight.value=""
+}
+})
+
 
  
  const childForm = document.getElementById("childForm")
@@ -99,7 +121,8 @@ if ((age > 0 && weight > overweight) || (age > 0 && weight < underweight)) {
   }
 
 
-    
+
+
 
 let currentPatient = document.getElementById("currentPatient")
   let childInput = document.getElementById("childInput")
