@@ -742,10 +742,10 @@ app.get("/starterpack", checkPassword, (req, res) => {
 });
 
 
-app.get("/powerpoints", checkPassword2, (req, res) => {
+// app.get("/powerpoints", checkPassword2, (req, res) => {
 
-  res.render("powerpoints", { title: titles.induction });
-});
+//   res.render("powerpoints", { title: titles.induction });
+// });
 
 
 app.get("/contact", (req, res) => {
