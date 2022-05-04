@@ -64,22 +64,25 @@ for (let buttons of dexButtons) {
 const checkbox = document.getElementById('estimate') 
 const knownWeight = document.getElementById('knownWeight')
 
+
 checkbox.addEventListener('change', function() {
 if (this.checked) {
   const knownAge = Number(document.getElementById('knownAge').value)
   if (knownAge > 0) {
     const estimatedWeight = (2*(knownAge + 4))
     knownWeight.value = estimatedWeight
+    document.getElementById('knownAge').disabled=true
   } else {
   
     alert('enter age to estimate weight')
     this.checked = false
   }
-  
-  console.log('checkbox checked')
+
 
 } else{
   knownWeight.value=""
+  document.getElementById('knownAge').disabled=false
+
 }
 })
 
