@@ -794,9 +794,9 @@ app.post("/contact", function (req, res) {
 });
 
 app.get("/formulae", (req, res) => {
-  inductionDrugs[4].name = "Neostig/Glyco 2.5mg/0.5mg"
-  inductionDrugs[4].units = ""
-  inductionDrugs[4].dose = "0.02ml"
+  // inductionDrugs[4].name = "Neostig/Glyco 2.5mg/0.5mg"
+  // inductionDrugs[4].units = ""
+  // inductionDrugs[4].dose = "0.02ml"
   antibiotics[3].name = "Gentamicin"
   res.render("formulae", { title: titles.formulae, premeds, inductionDrugs, emergencyDrugs, antibiotics, antiemetics, painkillers});
 });

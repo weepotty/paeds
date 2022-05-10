@@ -71,7 +71,9 @@ if (this.checked) {
   if (knownAge > 0) {
     const estimatedWeight = (2*(knownAge + 4))
     knownWeight.value = estimatedWeight
-    document.getElementById('knownAge').disabled=true
+    document.getElementById('knownAge').readOnly=true
+    
+    console.log(knownAge)
   } else {
   
     alert('enter age to estimate weight')
@@ -81,7 +83,7 @@ if (this.checked) {
 
 } else{
   knownWeight.value=""
-  document.getElementById('knownAge').disabled=false
+  document.getElementById('knownAge').readOnly=false
 
 }
 })
@@ -92,9 +94,11 @@ if (this.checked) {
  childForm.addEventListener('submit', getWeight())
  
  function getWeight (){
+  
   let weight = Number(document.getElementById("weight").innerText);
   let age = Number(document.getElementById("age").innerText);
- 
+  
+
 const estWeight = 2 * (age + 4)
 const overweight = 1.5 * estWeight
 const underweight = 0.5 * estWeight
