@@ -2,23 +2,22 @@
 //   require("dotenv").config()};
 
 const express = require("express");
-const PORT = process.env.PORT || 5000;
-const nodemailer = require('nodemailer')
-const bodyParser=require('body-parser')
+const PORT = process.env.PORT || 3000;
+const nodemailer = require("nodemailer");
+const bodyParser = require("body-parser");
 const app = express();
 // const User = require ('./models/user')
 // const mongoose = require("mongoose");
-const {google} = require('googleapis')
+const { google } = require("googleapis");
 
 const OAuth2 = google.auth.OAuth2;
-const config = require('./config.js')
-const OAuth2_client = new OAuth2(config.clientId, config.clientSecret)
+const config = require("./config.js");
+const OAuth2_client = new OAuth2(config.clientId, config.clientSecret);
 // const bcrypt = require("bcryptjs");
 // const session = require ('express-session')
 // const inductionPwd = process.env.PASSWORD
 
-
-OAuth2_client.setCredentials({refresh_token:config.refreshToken})
+OAuth2_client.setCredentials({ refresh_token: config.refreshToken });
 
 const child = [{ weight: "?", age: "?", months: "?" }];
 
@@ -56,7 +55,13 @@ const antibiotics = [
 
 const antiemetics = [
   { name: "Ondansetron", dose: 0.15, units: "mg", max: 4, concentration: 2 },
-  { name: "Dexamethasone", dose: 0.15, units: "mg", max: 6.6, concentration: 3.3 },
+  {
+    name: "Dexamethasone",
+    dose: 0.15,
+    units: "mg",
+    max: 6.6,
+    concentration: 3.3,
+  },
 ];
 
 const painkillers = [
@@ -84,9 +89,8 @@ const titles = {
   induction: "Induction",
   contact: "Contact",
   formulae: "Formulae",
-  login: "Password Required"
+  login: "Password Required",
 };
-
 
 // async function main() {
 //   // await mongoose.connect("mongodb://localhost:27017/authDemo");
@@ -99,13 +103,11 @@ const titles = {
 //   console.log("MONGO CONNECTION OPEN");
 // });
 
-
-
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
-app.use(express.json())
+app.use(express.json());
 
 // app.use(session({secret:'notagoodsecret',
 // resave: false,
@@ -120,27 +122,22 @@ app.use(express.json())
 // next();
 // }
 
-
 const checkPassword = (req, res, next) => {
-  const {password} = req.body;
-if (password === 'paedspassword') {
-next()
-}
-else {
-  res.redirect('/login')
-}
-
-}
+  const { password } = req.body;
+  if (password === "paedspassword") {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+};
 const checkPassword2 = (req, res, next) => {
-  const {password} = req.body;
-if (password === 'paedspassword') {
-next()
-}
-else {
-  res.redirect('/login2')
-}
-
-}
+  const { password } = req.body;
+  if (password === "paedspassword") {
+    next();
+  } else {
+    res.redirect("/login2");
+  }
+};
 
 // pdf links
 app.get("/pdfs/cardiac-arr.pdf", function (req, res) {
@@ -279,7 +276,6 @@ app.get("/pdfs/ppt-nov-21.pdf", function (req, res) {
 
 // creating password
 
-
 // app.get('/register', (req, res) => {
 // res.render('register')
 // })
@@ -294,14 +290,13 @@ app.get("/pdfs/ppt-nov-21.pdf", function (req, res) {
 //   res.redirect('/')
 // })
 
+app.get("/login", (req, res) => {
+  res.render("login", { title: titles.login });
+});
 
-app.get('/login', (req, res) => {
-  res.render('login', { title: titles.login })
-})
-
-app.get('/login2', (req, res) => {
-  res.render('login2', { title: titles.login })
-})
+app.get("/login2", (req, res) => {
+  res.render("login2", { title: titles.login });
+});
 // app.post('/login', async (req, res) => {
 //   const {password} = req.body;
 //   const user = await User.findOne();
@@ -315,31 +310,25 @@ app.get('/login2', (req, res) => {
 //   }
 // })
 
+app.post("/login", (req, res) => {
+  const { password } = req.body;
 
-app.post('/login', (req, res) => {
-  const {password} = req.body;
-
-  if (password === 'paedspassword') {
-
-    res.render('starterpack', { title: titles.induction })
+  if (password === "paedspassword") {
+    res.render("starterpack", { title: titles.induction });
+  } else {
+    res.send("wrong password please try again");
   }
-  else {
-    res.send('wrong password please try again')
+});
+
+app.post("/login2", (req, res) => {
+  const { password } = req.body;
+
+  if (password === "paedspassword") {
+    res.render("powerpoints", { title: titles.induction });
+  } else {
+    res.send("wrong password please try again");
   }
-})
-
-app.post('/login2', (req, res) => {
-  const {password} = req.body;
-
-  if (password === 'paedspassword') {
-
-    res.render('powerpoints', { title: titles.induction })
-  }
-  else {
-    res.send('wrong password please try again')
-  }
-})
-
+});
 
 app.get("/", function (req, res) {
   let weight = Number(child[child.length - 1].weight);
@@ -367,7 +356,6 @@ app.post("/", function (req, res) {
   const { weight, age, months } = req.body;
 
   child.push({ weight, age, months });
-
 
   //drug calculator code
 
@@ -500,9 +488,9 @@ app.get("/wetflag", (req, res) => {
     { name: "Glucose 10%", formula: 2 * weight, units: "ml" },
   ];
 
-if (parameters[1].formula > 150) {
-  parameters[1].formula = 150
-}
+  if (parameters[1].formula > 150) {
+    parameters[1].formula = 150;
+  }
 
   parameters.forEach((parameter) => {
     parameter["formula"] = parseFloat(parameter["formula"].toFixed(1));
@@ -537,8 +525,12 @@ app.get("/airway", (req, res) => {
   let months = Number(child[child.length - 1].months);
 
   const observations = [
-    { name: "RR", value: 'enter age', units: "breaths/min" },
-    { name: "Tidal volume (6ml/kg)", value: Math.round(6 * weight), units: "ml" },
+    { name: "RR", value: "enter age", units: "breaths/min" },
+    {
+      name: "Tidal volume (6ml/kg)",
+      value: Math.round(6 * weight),
+      units: "ml",
+    },
   ];
 
   const airwayDevices = [
@@ -556,43 +548,39 @@ app.get("/airway", (req, res) => {
     }
   });
 
-
-
-//RR ranges
+  //RR ranges
   switch (true) {
-    case age < 1 && months <1:
-      observations[0].value = '40-60';
+    case age < 1 && months < 1:
+      observations[0].value = "40-60";
       break;
     case age < 1 && months <= 1:
-      observations[0].value = '30-50';
+      observations[0].value = "30-50";
       break;
     case age < 1 && months <= 3:
-      observations[0].value = '30-45';
+      observations[0].value = "30-45";
       break;
-      case age < 1 && months <= 6:
-      observations[0].value = '25-35';
+    case age < 1 && months <= 6:
+      observations[0].value = "25-35";
       break;
-      case age >= 1 && age < 2:
-      observations[0].value = '20-30';
+    case age >= 1 && age < 2:
+      observations[0].value = "20-30";
       break;
-      case age >= 2 && age < 4:
-      observations[0].value = '20-28';
+    case age >= 2 && age < 4:
+      observations[0].value = "20-28";
       break;
-      case age >= 4 && months < 6:
-      observations[0].value = '20-26';
+    case age >= 4 && months < 6:
+      observations[0].value = "20-26";
       break;
-      case age >= 6 && age < 8:
-      observations[0].value = '18-24';
+    case age >= 6 && age < 8:
+      observations[0].value = "18-24";
       break;
-      case age >= 8 && age < 10:
-      observations[0].value = '18-22';
+    case age >= 8 && age < 10:
+      observations[0].value = "18-22";
       break;
-      case age >=10:
-      observations[0].value = '16-20';
+    case age >= 10:
+      observations[0].value = "16-20";
       break;
-      
   }
-
 
   //LMA sizing
   switch (true) {
@@ -625,60 +613,58 @@ app.get("/airway", (req, res) => {
   airwayDevices.forEach((device) => {
     if (isNaN(device["formula"])) {
       device["formula"] = " ";
-    } 
-    else {
+    } else {
       device["formula"] = device["formula"];
     }
   });
 
-switch (true) {
-  
-case age < 1 :
-  airwayDevices[1].formula = 'seek advice for under 1s'
-  airwayDevices[2].formula = 'seek advice for under 1s'
-}
+  switch (true) {
+    case age < 1:
+      airwayDevices[1].formula = "seek advice for under 1s";
+      airwayDevices[2].formula = "seek advice for under 1s";
+  }
 
   // microcuff ETT izing
 
   switch (true) {
     case weight < 3:
-      airwayDevices[0].formula = 'not recommended <3kg'
+      airwayDevices[0].formula = "not recommended <3kg";
       break;
-    case age ===0 && months <8:
-      airwayDevices[0].formula = 3.0
+    case age === 0 && months < 8:
+      airwayDevices[0].formula = 3.0;
       break;
-    case age ===0 && months >=8: 
+    case age === 0 && months >= 8:
       airwayDevices[0].formula = 3.5;
       break;
 
-      case 1 <= age && age < 2:
-        airwayDevices[0].formula = 3.5;
-        break;
+    case 1 <= age && age < 2:
+      airwayDevices[0].formula = 3.5;
+      break;
     case 2 <= age && age < 4:
       airwayDevices[0].formula = 4.0;
       break;
 
-      case 4 <= age && age < 6:
+    case 4 <= age && age < 6:
       airwayDevices[0].formula = 4.5;
       break;
-    
-      case 6 <= age && age < 8:
+
+    case 6 <= age && age < 8:
       airwayDevices[0].formula = 5.0;
       break;
 
-      case 8 <= age && age < 10:
+    case 8 <= age && age < 10:
       airwayDevices[0].formula = 5.5;
       break;
 
-      case 10 <= age && age < 12:
+    case 10 <= age && age < 12:
       airwayDevices[0].formula = 6.0;
       break;
 
-      case 12 <= age && age < 14:
+    case 12 <= age && age < 14:
       airwayDevices[0].formula = 6.5;
       break;
 
-      case 14 <= age && age < 16:
+    case 14 <= age && age < 16:
       airwayDevices[0].formula = 7.0;
       break;
   }
@@ -741,65 +727,66 @@ app.get("/starterpack", checkPassword, (req, res) => {
   res.render("starterpack", { title: titles.induction });
 });
 
-
 // app.get("/powerpoints", checkPassword2, (req, res) => {
 
 //   res.render("powerpoints", { title: titles.induction });
 // });
 
-
 app.get("/contact", (req, res) => {
-  res.render("contact", { title: titles.contact });
+  res.render("contact2", { title: titles.contact });
 });
 
 app.post("/contact", function (req, res) {
-  console.log(req.body)
-  const accessToken = OAuth2_client.getAccessToken()
-  
+  console.log(req.body);
+  const accessToken = OAuth2_client.getAccessToken();
+
   const mailOptions = {
     from: req.body.email,
-    to: 'paedsinduction@gmail.com',
-    subject: 'paeds induction',
+    to: "paedsinduction@gmail.com",
+    subject: "paeds induction",
     text: `name: ${req.body.name}
     email: ${req.body.email}
-    message: ${req.body.message}`
+    message: ${req.body.message}`,
+  };
 
-  }
-
-  const transporter = nodemailer.createTransport ({
-    service: 'gmail',
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
     auth: {
-      type: 'OAuth2',
+      type: "OAuth2",
       user: config.user,
       clientId: config.clientId,
       clientSecret: config.clientSecret,
       refreshToken: config.refreshToken,
       accessToken: accessToken,
-    }
-  })
+    },
+  });
 
-  transporter.sendMail(mailOptions, (error, info)=>{
-    if(error) {
-      console.log(error)
-      res.send('error')
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.send("error");
     } else {
-      console.log('Email sent: ' + info.response);
-      res.send('success')
+      console.log("Email sent: " + info.response);
+      res.send("success");
     }
-    transporter.close()
- 
-  })
-  
-
+    transporter.close();
+  });
 });
 
 app.get("/formulae", (req, res) => {
   // inductionDrugs[4].name = "Neostig/Glyco 2.5mg/0.5mg"
   // inductionDrugs[4].units = ""
   // inductionDrugs[4].dose = "0.02ml"
-  antibiotics[3].name = "Gentamicin"
-  res.render("formulae", { title: titles.formulae, premeds, inductionDrugs, emergencyDrugs, antibiotics, antiemetics, painkillers});
+  antibiotics[3].name = "Gentamicin";
+  res.render("formulae", {
+    title: titles.formulae,
+    premeds,
+    inductionDrugs,
+    emergencyDrugs,
+    antibiotics,
+    antiemetics,
+    painkillers,
+  });
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
-
