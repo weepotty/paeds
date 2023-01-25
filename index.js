@@ -258,21 +258,21 @@ app.get("/pdfs/epidural.pdf", function (req, res) {
   });
 });
 
-app.get("/pdfs/ppt-feb-22.pdf", function (req, res) {
-  var tempFile = "ppt-feb-22.pdf";
+app.get("/pdfs/ppt-nov-22.pdf", function (req, res) {
+  var tempFile = "ppt-nov-22.pdf";
   fs.readFile(tempFile, function (err, data) {
     res.contentType("application/pdf");
     res.send(data);
   });
 });
 
-app.get("/pdfs/ppt-nov-21.pdf", function (req, res) {
-  var tempFile = "ppt-nov-21.pdf";
-  fs.readFile(tempFile, function (err, data) {
-    res.contentType("application/pdf");
-    res.send(data);
-  });
-});
+// app.get("/pdfs/ppt-nov-21.pdf", function (req, res) {
+//   var tempFile = "ppt-nov-21.pdf";
+//   fs.readFile(tempFile, function (err, data) {
+//     res.contentType("application/pdf");
+//     res.send(data);
+//   });
+// });
 
 // creating password
 
