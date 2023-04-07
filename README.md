@@ -1,7 +1,7 @@
 
 <h1 align="center">No Matter How Small 👶🏻</h1>
 
-This is a web app for paediatric anaesthetists, borne out of my own need for automation of drug calculations and consolidating guidelines in one place. The aim of the app being to minimise human error, by not relying on mental arithmetic (I was a sleep deprived first-time mum returning to work after maternity leave). Added to the mix was the fact that many departmental guidelines and protocols had been taken off the walls of the operating theatre because of covid (infection control).
+This is a web app for paediatric anaesthetists, borne out of my own need for the automation of drug calculations and consolidating guidelines in one place. The aim of the app is to minimise human error, by not relying on mental arithmetic (I was a sleep deprived first-time mum returning to work after maternity leave). Added to the mix was the fact that many departmental guidelines and protocols had been taken off the walls of the operating theatre, due to covid (infection control).
 
 ### ✨ [Demo](https://paedsinduction.com/)
 
