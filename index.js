@@ -1,23 +1,9 @@
-// if (process.env.NODE_ENV == "production") {
-//   require("dotenv").config()};
-
 const express = require("express");
 const PORT = process.env.PORT || 3000;
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const app = express();
-// const User = require ('./models/user')
-// const mongoose = require("mongoose");
 const { google } = require("googleapis");
-
-const OAuth2 = google.auth.OAuth2;
-const config = require("./config.js");
-const OAuth2_client = new OAuth2(config.clientId, config.clientSecret);
-// const bcrypt = require("bcryptjs");
-// const session = require ('express-session')
-// const inductionPwd = process.env.PASSWORD
-
-OAuth2_client.setCredentials({ refresh_token: config.refreshToken });
 
 const child = [{ weight: "?", age: "?", months: "?" }];
 
@@ -92,35 +78,11 @@ const titles = {
   login: "Password Required",
 };
 
-// async function main() {
-//   // await mongoose.connect("mongodb://localhost:27017/authDemo");
-//   await mongoose.connect(dbUrl)
-// }
-
-// main().catch((err) => console.log(err, "MONGOOSE ERROR"));
-
-// main().then(() => {
-//   console.log("MONGO CONNECTION OPEN");
-// });
-
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 app.use(express.json());
-
-// app.use(session({secret:'notagoodsecret',
-// resave: false,
-//     saveUninitialized: true
-// }))
-
-// const requireLogin = (req, res, next) => {
-
-// if (!req.session.user_id) {
-//   return res.redirect('/login')
-// }
-// next();
-// }
 
 const checkPassword = (req, res, next) => {
   const { password } = req.body;
@@ -266,30 +228,6 @@ app.get("/pdfs/ppt-nov-22.pdf", function (req, res) {
   });
 });
 
-// app.get("/pdfs/ppt-nov-21.pdf", function (req, res) {
-//   var tempFile = "ppt-nov-21.pdf";
-//   fs.readFile(tempFile, function (err, data) {
-//     res.contentType("application/pdf");
-//     res.send(data);
-//   });
-// });
-
-// creating password
-
-// app.get('/register', (req, res) => {
-// res.render('register')
-// })
-
-// app.post("/register", async (req, res) => {
-
-//   const {password} = req.body;
-//   const hash = await bcrypt.hash(password, 12)
-//   const user = new User({password:hash})
-//   await user.save()
-// req.session.user_id = user._id;
-//   res.redirect('/')
-// })
-
 app.get("/login", (req, res) => {
   res.render("login", { title: titles.login });
 });
@@ -297,18 +235,6 @@ app.get("/login", (req, res) => {
 app.get("/login2", (req, res) => {
   res.render("login2", { title: titles.login });
 });
-// app.post('/login', async (req, res) => {
-//   const {password} = req.body;
-//   const user = await User.findOne();
-//   const validPassword = await bcrypt.compare(password, user.password)
-//   if (validPassword) {
-//     req.session.user_id = user._id;
-//     res.redirect('/starterpack')
-//   }
-//   else {
-//     res.send('wrong password please try again')
-//   }
-// })
 
 app.post("/login", (req, res) => {
   const { password } = req.body;
@@ -466,8 +392,6 @@ app.post("/", function (req, res) {
 
 app.post("/wetflag", (req, res) => {
   const { weight, age, months } = req.body;
-  // const weight = req.body.weight;
-  // const age = req.body.age
   child.push({ weight, age, months });
   res.redirect("/wetflag");
 });
@@ -726,11 +650,6 @@ app.get("/perioperative", (req, res) => {
 app.get("/starterpack", checkPassword, (req, res) => {
   res.render("starterpack", { title: titles.induction });
 });
-
-// app.get("/powerpoints", checkPassword2, (req, res) => {
-
-//   res.render("powerpoints", { title: titles.induction });
-// });
 
 app.get("/contact", (req, res) => {
   res.render("contact2", { title: titles.contact });
