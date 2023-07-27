@@ -7,8 +7,8 @@
       <!-- <h1>🚜 under construction</h1> -->
       <div class="box has-text-danger">
         <p class="has-text-black">Estimation of weight uses APLS formula: weight = 2 x (age+4)</p>
-        <a class="has-text-weight-bold has-text-danger" href='https://www.sapg.scot/media/2918/ukmiqa-drug-dosing-in-childhood-obesity-1.pdf'> Drug dosing in obesity or malnutrition </a>
-        
+        <a class="has-text-weight-bold has-text-danger" href='https://www.sps.nhs.uk/articles/how-should-medicines-be-dosed-in-children-who-are-obese/'> Drug dosing in obesity or malnutrition </a>
+
       </div>
 <div class="table-container has-text-centered">
 
@@ -16,7 +16,7 @@
     <tr>
       <th>Premed</th>
       <th>Dose</th>
-      <th>Max</th> 
+      <th>Max</th>
    </tr>
 
    <% for (let premed of premeds) { %>
@@ -24,8 +24,8 @@
       <td><%= premed.name %></td>
       <td><%= premed.dose %><%= premed.units %>/kg</td>
       <td><%= premed.max %><%= premed.units %> </td>
-     </tr>  
-     <% } %>  
+     </tr>
+     <% } %>
   </table>
   * 2-4mcg/kg to max 200mcg
 
@@ -38,7 +38,7 @@
     <tr>
       <th>Drug</th>
       <th>Conc</th>
-      <th>Dose</th> 
+      <th>Dose</th>
 
    </tr>
 
@@ -47,11 +47,11 @@
       <td><%= idrug.name %></td>
       <td><%= idrug.concentration %><%= idrug.units %>/ml</td>
       <td><%= idrug.dose %><%= idrug.units %>/kg</td>
-     </tr>  
+     </tr>
      <% } %>
-     
+
   </table>
-  
+
 
 
 </div>
@@ -60,8 +60,8 @@
     <tr>
       <th>Emergency Drug</th>
       <th>Conc</th>
-      <th>Dose</th> 
-      <th>Max</th> 
+      <th>Dose</th>
+      <th>Max</th>
    </tr>
 
    <% for (let edrug of emergencyDrugs) { %>
@@ -70,8 +70,8 @@
       <td><%= edrug.concentration %><%= edrug.units %>/ml</td>
       <td><%= edrug.dose %><%= edrug.units %>/kg</td>
       <td><%= edrug.max %><%= edrug.units %></td>
-     </tr>  
-     <% } %>  
+     </tr>
+     <% } %>
   </table>
 </div>
 </div>
@@ -83,8 +83,8 @@
   <table class="table is-fullwidth has-text-left">
     <tr>
       <th>Drug</th>
-      <th>Dose</th> 
-      <th>Max</th> 
+      <th>Dose</th>
+      <th>Max</th>
    </tr>
 
    <% for (let abx of antibiotics) { %>
@@ -92,8 +92,8 @@
       <td><%= abx.name %></td>
       <td><%= abx.dose %><%= abx.units %>/kg</td>
       <td><%= abx.max %><%= abx.units %></td>
-     </tr>  
-     <% } %>  
+     </tr>
+     <% } %>
   </table>
 
 </div>
@@ -104,8 +104,8 @@
     <tr>
       <th>Drug</th>
       <th>Conc</th>
-      <th>Dose</th> 
-      <th>Max</th> 
+      <th>Dose</th>
+      <th>Max</th>
    </tr>
 
    <% for (let antiemetic of antiemetics) { %>
@@ -114,18 +114,18 @@
       <td><%= antiemetic.concentration%><%= antiemetic.units %>/ml</td>
       <td><%= antiemetic.dose %><%= antiemetic.units %>/kg</td>
       <td><%= antiemetic.max %><%= antiemetic.units %></td>
-     </tr>  
-     <% } %>  
+     </tr>
+     <% } %>
   </table>
-  
+
 </div>
 <div class="table-container">
   <table class="table is-fullwidth has-text-left">
     <tr>
       <th>Drug</th>
       <th>Conc</th>
-      <th>Dose</th> 
-      <th>Max</th> 
+      <th>Dose</th>
+      <th>Max</th>
    </tr>
 
    <tr>
@@ -153,8 +153,8 @@
     <td>50mg</td>
   </tr>
   </table>
-  
-  
+
+
   <!-- <span class="has-text-weight-bold">Analgesia</span>
   <ul>
     <li>Paracetamol IV <10kg: 7.5mg/kg</li>
@@ -167,7 +167,7 @@
 
 
     </div>
-  
+
 
 
 <%- include ("partials/footer-protocols") -%>
